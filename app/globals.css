@@ -1,0 +1,636 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 195 56% 84%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 0%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 195 56% 84%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 346 50% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 30%;
+    --input: 0 0% 0%;
+    --ring: 195 56% 84%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 195 56% 84%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 0%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 0 0% 0%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 195 56% 84%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 30%;
+    --input: 0 0% 0%;
+    --ring: 195 56% 84%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-black text-foreground;
+  }
+}
+
+/* Button styles based on the Figma design */
+.btn-filled {
+  background-color: #bddfef;
+  color: black;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.btn-filled:hover {
+  background-color: #a5c7d7;
+}
+.btn-filled:active {
+  background-color: #8fb8c9;
+}
+.btn-filled:disabled {
+  background-color: #39384b;
+  color: rgb(107, 114, 128);
+}
+
+.btn-faint {
+  background-color: #a5c7d7;
+  color: black;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.btn-faint:hover {
+  background-color: #8fb8c9;
+}
+.btn-faint:active {
+  background-color: #7da9b8;
+}
+.btn-faint:disabled {
+  background-color: #39384b;
+  color: rgb(107, 114, 128);
+}
+
+.btn-outlined {
+  background-color: #000000;
+  color: white;
+  border: 1px solid rgb(125, 135, 150);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.btn-outlined:hover {
+  background-color: #000000;
+  border-color: rgb(145, 155, 170);
+}
+.btn-outlined:active {
+  background-color: #000000;
+}
+.btn-outlined:disabled {
+  background-color: #000000;
+  color: rgb(107, 114, 128);
+  border-color: rgb(75, 85, 99);
+}
+
+.btn-muted {
+  background-color: #000000;
+  color: white;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.btn-muted:hover {
+  background-color: #000000;
+}
+.btn-muted:active {
+  background-color: #000000;
+}
+.btn-muted:disabled {
+  background-color: #000000;
+  color: rgb(107, 114, 128);
+}
+
+.btn-destructive {
+  background-color: #b73f54;
+  color: white;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.btn-destructive:hover {
+  background-color: #e15970;
+}
+.btn-destructive:active {
+  background-color: #9e3548;
+}
+.btn-destructive:disabled {
+  background-color: #4a2028;
+  color: rgb(107, 114, 128);
+}
+
+/* Button sizes */
+.btn-lg {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.btn-md {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.btn-sm {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@layer components {
+  /* Card styles */
+  .card-dark {
+    @apply bg-black border border-gray-600 rounded-xl shadow-md;
+  }
+
+  /* Input styles */
+  .input-dark {
+    @apply bg-black border border-gray-500 text-white focus:border-[#bddfef] focus:ring-1 focus:ring-[#bddfef]/20 rounded-md transition-all;
+  }
+}
+
+/* Enhanced border styles for better visibility on black */
+.border-enhanced {
+  border-color: rgba(180, 180, 180, 0.4);
+  box-shadow: 0 0 0 1px rgba(180, 180, 180, 0.1);
+}
+
+.border-enhanced-hover:hover {
+  border-color: rgba(200, 200, 200, 0.5);
+  box-shadow: 0 0 0 1px rgba(200, 200, 200, 0.15);
+}
+
+.border-enhanced-focus:focus {
+  border-color: rgba(220, 220, 220, 0.6);
+  box-shadow: 0 0 0 1px rgba(220, 220, 220, 0.2);
+}
+
+.border-enhanced-active {
+  border-color: rgba(220, 220, 220, 0.7);
+  box-shadow: 0 0 0 1px rgba(220, 220, 220, 0.25);
+}
+
+/* Theme-specific color variations for #a5c7d7 */
+.light {
+  --a5c7d7-10: rgba(165, 199, 215, 0.1);
+  --a5c7d7-20: rgba(165, 199, 215, 0.2);
+  --a5c7d7-30: rgba(165, 199, 215, 0.3);
+  --a5c7d7-40: rgba(165, 199, 215, 0.4);
+  --a5c7d7-50: rgba(165, 199, 215, 0.5);
+  --a5c7d7-70: rgba(165, 199, 215, 0.7);
+  --a5c7d7-90: rgba(165, 199, 215, 0.9);
+  --a5c7d7: rgb(165, 199, 215);
+
+  --a5c7d7-darker: rgb(138, 179, 195);
+  --a5c7d7-darkest: rgb(122, 160, 176);
+
+  --text-on-a5c7d7: rgb(0, 0, 0);
+  --text-on-a5c7d7-muted: rgb(40, 40, 40);
+}
+
+.dark {
+  --a5c7d7-10: rgba(165, 199, 215, 0.1);
+  --a5c7d7-20: rgba(165, 199, 215, 0.2);
+  --a5c7d7-30: rgba(165, 199, 215, 0.3);
+  --a5c7d7-40: rgba(165, 199, 215, 0.4);
+  --a5c7d7-50: rgba(165, 199, 215, 0.5);
+  --a5c7d7-70: rgba(165, 199, 215, 0.7);
+  --a5c7d7-90: rgba(165, 199, 215, 0.9);
+  --a5c7d7: rgb(165, 199, 215);
+
+  --a5c7d7-darker: rgb(138, 179, 195);
+  --a5c7d7-darkest: rgb(122, 160, 176);
+
+  --text-on-a5c7d7: rgb(0, 0, 0);
+  --text-on-a5c7d7-muted: rgb(40, 40, 40);
+}
+
+/* Custom theme-aware classes */
+.bg-theme-a5c7d7-10 {
+  background-color: var(--a5c7d7-10);
+}
+
+.bg-theme-a5c7d7-20 {
+  background-color: var(--a5c7d7-20);
+}
+
+.bg-theme-a5c7d7-30 {
+  background-color: var(--a5c7d7-30);
+}
+
+.bg-theme-a5c7d7-40 {
+  background-color: var(--a5c7d7-40);
+}
+
+.bg-theme-a5c7d7-50 {
+  background-color: var(--a5c7d7-50);
+}
+
+.border-theme-a5c7d7-30 {
+  border-color: var(--a5c7d7-30);
+}
+
+.border-theme-a5c7d7-50 {
+  border-color: var(--a5c7d7-50);
+}
+
+.border-theme-a5c7d7-70 {
+  border-color: var(--a5c7d7-70);
+}
+
+.text-theme-a5c7d7 {
+  color: var(--a5c7d7);
+}
+
+.text-theme-on-a5c7d7 {
+  color: var(--text-on-a5c7d7);
+}
+
+.text-theme-on-a5c7d7-muted {
+  color: var(--text-on-a5c7d7-muted);
+}
+
+.from-theme-a5c7d7 {
+  --tw-gradient-from: var(--a5c7d7);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(165, 199, 215, 0));
+}
+
+.to-theme-a5c7d7-darker {
+  --tw-gradient-to: var(--a5c7d7-darker);
+}
+
+.hover\:from-theme-a5c7d7-darker:hover {
+  --tw-gradient-from: var(--a5c7d7-darker);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(138, 179, 195, 0));
+}
+
+.hover\:to-theme-a5c7d7-darkest:hover {
+  --tw-gradient-to: var(--a5c7d7-darkest);
+}
+
+.focus\:border-theme-a5c7d7:focus {
+  border-color: var(--a5c7d7);
+}
+
+.focus\:ring-theme-a5c7d7-20:focus {
+  --tw-ring-color: var(--a5c7d7-20);
+}
+
+.ring-theme-a5c7d7-50 {
+  --tw-ring-color: var(--a5c7d7-50);
+}
+
+/* Replace blue glow with dark gray (#141414) glow where appropriate */
+:root {
+  --glow-primary: rgba(165, 199, 215, 0.15);
+  --glow-success: rgba(74, 222, 128, 0.15);
+  --glow-warning: rgba(251, 191, 36, 0.15);
+  --glow-error: rgba(239, 68, 68, 0.15);
+  --glow-purple: rgba(168, 85, 247, 0.15);
+  --glow-dark: rgba(20, 20, 20, 0.3);
+}
+
+.dark {
+  --glow-primary: rgba(165, 199, 215, 0.1);
+  --glow-success: rgba(74, 222, 128, 0.1);
+  --glow-warning: rgba(251, 191, 36, 0.1);
+  --glow-error: rgba(239, 68, 68, 0.1);
+  --glow-purple: rgba(168, 85, 247, 0.1);
+  --glow-dark: rgba(20, 20, 20, 0.2);
+}
+
+/* Add dark glow utility class */
+.glow-dark {
+  box-shadow: 0 0 15px var(--glow-dark);
+}
+
+.hover\:glow-dark:hover {
+  box-shadow: 0 0 15px var(--glow-dark);
+}
+
+/* Custom animations for glowing elements */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Update component background colors to use black */
+.bg-component {
+  background-color: #000000;
+}
+
+/* Add a new class for component backgrounds */
+.bg-component-lighter {
+  background-color: #000000;
+}
+
+/* Add these explicit overrides to force black backgrounds */
+.bg-card {
+  background-color: #000000 !important;
+}
+
+.bg-popover {
+  background-color: #000000 !important;
+}
+
+.bg-secondary {
+  background-color: #000000 !important;
+}
+
+.bg-muted {
+  background-color: #000000 !important;
+}
+
+.bg-input {
+  background-color: #000000 !important;
+}
+
+/* Override any blue-tinted backgrounds */
+.bg-gray-800\/40,
+.bg-gray-800\/20,
+.bg-gray-900\/20,
+.bg-gray-900\/30,
+.bg-gray-900\/40 {
+  background-color: #000000 !important;
+}
+
+/* Override Card component background */
+.card {
+  background-color: #000000 !important;
+}
+
+/* Background colors from Figma design - all changed to black */
+.bg-figma-darkest {
+  background-color: #000000;
+}
+
+.bg-figma-darker {
+  background-color: #000000;
+}
+
+.bg-figma-dark {
+  background-color: #000000;
+}
+
+.bg-figma-medium {
+  background-color: #000000;
+}
+
+.bg-figma-light {
+  background-color: #000000;
+}
+
+/* Card and component backgrounds */
+.bg-card-figma {
+  background-color: #000000;
+}
+
+.bg-component-figma {
+  background-color: #000000;
+}
+
+/* Enhanced border styles for inputs */
+input.border-enhanced,
+textarea.border-enhanced,
+select.border-enhanced {
+  border-color: rgba(180, 180, 180, 0.4);
+  transition: all 0.2s ease;
+}
+
+input.border-enhanced:hover,
+textarea.border-enhanced:hover,
+select.border-enhanced:hover {
+  border-color: rgba(200, 200, 200, 0.5);
+}
+
+input.border-enhanced:focus,
+textarea.border-enhanced:focus,
+select.border-enhanced:focus {
+  border-color: rgba(220, 220, 220, 0.6);
+  box-shadow: 0 0 0 2px rgba(165, 199, 215, 0.25);
+}
+
+/* Enhanced card borders */
+.card-border-enhanced {
+  border: 1px solid rgba(180, 180, 180, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(180, 180, 180, 0.1);
+  transition: all 0.2s ease;
+}
+
+.card-border-enhanced:hover {
+  border-color: rgba(200, 200, 200, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(200, 200, 200, 0.15);
+}
+
+/* Subtle border glow for important elements */
+.border-glow {
+  box-shadow: 0 0 5px rgba(180, 180, 180, 0.15);
+}
+
+.border-glow-hover:hover {
+  box-shadow: 0 0 8px rgba(200, 200, 200, 0.2);
+}
+
+/* Accent border styles */
+.border-accent {
+  border-color: rgba(165, 199, 215, 0.5);
+}
+
+.border-accent-hover:hover {
+  border-color: rgba(165, 199, 215, 0.7);
+}
+
+.border-accent-active {
+  border-color: rgba(165, 199, 215, 0.9);
+  box-shadow: 0 0 0 1px rgba(165, 199, 215, 0.3);
+}
+
+/* Add these animation classes at the end of the file */
+
+/* Card hover animations */
+.card-hover-animate {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-animate:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover-animate:active {
+  transform: translateY(0) scale(1);
+}
+
+/* Glow effect for cards */
+.hover-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 15px rgba(189, 223, 239, 0.15);
+  border-color: rgba(189, 223, 239, 0.5);
+}
+
+/* Pulse animation for selected cards */
+@keyframes subtle-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(189, 223, 239, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(189, 223, 239, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(189, 223, 239, 0);
+  }
+}
+
+.pulse-animation {
+  animation: subtle-pulse 2s infinite;
+}
+
+/* Border highlight animation */
+.border-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.border-highlight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(189, 223, 239, 0.2), transparent);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.border-highlight:hover::after {
+  left: 100%;
+}
+
+/* Shine effect */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  z-index: 2;
+  display: block;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.1) 100%);
+  transform: skewX(-25deg);
+  transition: all 0.7s ease;
+  opacity: 0;
+}
+
+.shine-effect:hover::before {
+  animation: shine 1.2s;
+  opacity: 1;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+/* Gradient border animation */
+.gradient-border-animation {
+  position: relative;
+  border: none !important;
+}
+
+.gradient-border-animation::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(45deg, rgba(189, 223, 239, 0.3), rgba(165, 199, 215, 0.3), rgba(189, 223, 239, 0.3));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border-animation:hover::before {
+  opacity: 1;
+}

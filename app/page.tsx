@@ -21,7 +21,7 @@ import MobileSim from "@/components/mobile-sim"
 import InstallAndPersonalDetails from "@/components/install-and-personal-details"
 
 // Custom hook import for mobile detection
-import useMobile from "@/hooks/use-mobile"
+import { useMobile } from "@/hooks/use-mobile"
 
 // Confetti component for order completion celebration
 const Confetti = () => {

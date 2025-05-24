@@ -1179,17 +1179,20 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
                     {/* Transaction Flow Visualization */}
                     <div className="flex items-center justify-between mb-6 relative">
                       {/* From Wallet */}
-                      <div className="flex flex-col items-center">
-                        <div className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center mb-2">
+                      <div className="flex flex-col items-center space-y-2">
+                        <div className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center">
                           <User className="h-6 w-6 text-gray-400" />
                         </div>
-                        <span className="text-xs text-gray-400">Your Wallet</span>
+                        <span className="text-xs text-gray-400 font-medium">Your Wallet</span>
                       </div>
 
-                      {/* Arrow and Amount */}
-                      <div className="flex-1 flex flex-col items-center">
-                        <div className="w-full h-0.5 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 relative">
-                          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gray-900 px-2 py-1 rounded border border-gray-700">
+                      {/* Transaction Arrow and Details */}
+                      <div className="flex-1 flex flex-col items-center px-4">
+                        <div className="relative w-full">
+                          <div className="h-0.5 bg-gradient-to-r from-gray-700 via-[#bddfef]/30 to-gray-700 w-full"></div>
+
+                          {/* Amount Badge */}
+                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gray-900 border border-gray-700 px-3 py-1 rounded-full">
                             <span className="text-xs font-medium text-white">
                               {paymentData.cryptoType === "bitcoin"
                                 ? "0.00045 BTC"
@@ -1200,42 +1203,48 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
                                     : "25.4 XRP"}
                             </span>
                           </div>
-                          <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2">
-                            <span className="text-xs text-gray-500">≈ £{calculateTotal()}</span>
+
+                          {/* Arrow */}
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <div className="w-6 h-6 bg-[#bddfef]/20 rounded-full flex items-center justify-center">
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 12H19M19 12L13 6M19 12L13 18"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="text-[#bddfef]"
+                                />
+                              </svg>
+                            </div>
                           </div>
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M5 12H19M19 12L13 6M19 12L13 18"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="text-gray-400"
-                              />
-                            </svg>
+
+                          {/* Fiat Amount */}
+                          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+                            <span className="text-xs text-gray-500">≈ £{calculateTotal()}</span>
                           </div>
                         </div>
                       </div>
 
                       {/* To Wallet */}
-                      <div className="flex flex-col items-center">
+                      <div className="flex flex-col items-center space-y-2">
                         <div
-                          className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${
+                          className={`w-12 h-12 rounded-full flex items-center justify-center border ${
                             paymentData.cryptoType === "bitcoin"
-                              ? "bg-orange-900/30 border-orange-500/50"
+                              ? "bg-orange-900/20 border-orange-500/30"
                               : paymentData.cryptoType === "ethereum"
-                                ? "bg-blue-900/30 border-blue-500/50"
+                                ? "bg-blue-900/20 border-blue-500/30"
                                 : paymentData.cryptoType === "litecoin"
-                                  ? "bg-gray-700 border-gray-500/50"
-                                  : "bg-blue-900/30 border-blue-400/50"
-                          } border`}
+                                  ? "bg-gray-700/20 border-gray-500/30"
+                                  : "bg-blue-900/20 border-blue-400/30"
+                          }`}
                         >
                           <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             {paymentData.cryptoType === "bitcoin" && (
@@ -1268,7 +1277,7 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
                             )}
                           </svg>
                         </div>
-                        <span className="text-xs text-gray-400">Olilo</span>
+                        <span className="text-xs text-gray-400 font-medium">Olilo</span>
                       </div>
                     </div>
 

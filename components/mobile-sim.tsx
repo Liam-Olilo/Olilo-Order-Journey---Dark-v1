@@ -645,46 +645,104 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
     if (compatibilityStep === 1) {
       return (
         <div>
-          {/* Popular manufacturers - larger buttons */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-6">
-            {commonDevices.slice(0, 4).map((manufacturer) => (
-              <button
-                key={manufacturer.name}
-                onClick={() => selectManufacturer(manufacturer.name)}
-                className={`p-4 rounded-lg border flex flex-col items-center justify-center transition-all ${
-                  selectedManufacturer === manufacturer.name
-                    ? "border-[#bddfef] bg-[#bddfef]/10 shadow-md shadow-[#bddfef]/5"
-                    : "border-gray-700/50 bg-black hover:border-gray-600 hover:bg-gray-900/50"
-                }`}
-                aria-label={`Select ${manufacturer.name}`}
-              >
-                <div className="p-3 rounded-full bg-gray-800 mb-2 flex items-center justify-center w-14 h-14">
-                  <div className="text-black">{manufacturer.icon}</div>
-                </div>
-                <span className="text-sm font-medium text-white text-center">{manufacturer.name}</span>
-              </button>
-            ))}
+          {/* Section title with better visual hierarchy */}
+          <div className="mb-5">
+            <h3 className="text-lg font-medium text-white mb-2 flex items-center">
+              <Search className="h-5 w-5 text-[#bddfef] mr-2" />
+              Select Your Device Manufacturer
+            </h3>
+            <p className="text-sm text-gray-300">Choose your phone manufacturer to check eSIM compatibility</p>
           </div>
 
-          {/* Other manufacturers - smaller grid */}
-          <div className="mb-6">
-            <h4 className="text-sm text-gray-400 mb-3">Other manufacturers</h4>
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+          {/* Popular manufacturers - enhanced grid with better visual hierarchy */}
+          <div className="mb-8">
+            <div className="flex items-center mb-4">
+              <div className="bg-[#bddfef]/20 text-[#bddfef] rounded-full h-6 w-6 flex items-center justify-center mr-2">
+                <span className="text-xs font-medium">1</span>
+              </div>
+              <h4 className="text-base font-medium text-white">Popular Manufacturers</h4>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {commonDevices.slice(0, 4).map((manufacturer) => (
+                <button
+                  key={manufacturer.name}
+                  onClick={() => selectManufacturer(manufacturer.name)}
+                  className={`relative p-5 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
+                    selectedManufacturer === manufacturer.name
+                      ? "border-[#bddfef] bg-gradient-to-b from-[#bddfef]/15 to-[#bddfef]/5 shadow-lg shadow-[#bddfef]/10"
+                      : "border-gray-700/50 bg-black hover:border-[#bddfef]/30 hover:bg-gray-900/70"
+                  }`}
+                  aria-label={`Select ${manufacturer.name}`}
+                >
+                  {selectedManufacturer === manufacturer.name && (
+                    <div className="absolute top-2 right-2 bg-[#bddfef] text-black rounded-full p-1">
+                      <Check className="h-3 w-3" />
+                    </div>
+                  )}
+                  <div
+                    className={`p-4 rounded-full mb-3 flex items-center justify-center w-16 h-16 ${
+                      selectedManufacturer === manufacturer.name
+                        ? "bg-[#bddfef]/20 ring-2 ring-[#bddfef]/30"
+                        : "bg-gray-800/80"
+                    }`}
+                  >
+                    <div className="text-black">{manufacturer.icon}</div>
+                  </div>
+                  <span
+                    className={`font-medium text-center ${
+                      selectedManufacturer === manufacturer.name ? "text-[#bddfef]" : "text-white"
+                    }`}
+                  >
+                    {manufacturer.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Other manufacturers - enhanced grid with better visual hierarchy */}
+          <div className="mb-8">
+            <div className="flex items-center mb-4">
+              <div className="bg-gray-700/50 text-gray-300 rounded-full h-6 w-6 flex items-center justify-center mr-2">
+                <span className="text-xs font-medium">2</span>
+              </div>
+              <h4 className="text-base font-medium text-white">Other Manufacturers</h4>
+            </div>
+
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
               {commonDevices.slice(4).map((manufacturer) => (
                 <button
                   key={manufacturer.name}
                   onClick={() => selectManufacturer(manufacturer.name)}
-                  className={`p-3 rounded-lg border flex flex-col items-center justify-center transition-all ${
+                  className={`relative p-3 rounded-lg border-2 flex flex-col items-center justify-center transition-all ${
                     selectedManufacturer === manufacturer.name
-                      ? "border-[#bddfef] bg-[#bddfef]/10"
-                      : "border-gray-700/50 bg-black hover:border-gray-600"
+                      ? "border-[#bddfef] bg-gradient-to-b from-[#bddfef]/15 to-[#bddfef]/5 shadow-md"
+                      : "border-gray-700/50 bg-black hover:border-gray-600/80 hover:bg-gray-900/50"
                   }`}
                   aria-label={`Select ${manufacturer.name}`}
                 >
-                  <div className="p-2 rounded-full bg-gray-800 mb-2 flex items-center justify-center w-10 h-10">
+                  {selectedManufacturer === manufacturer.name && (
+                    <div className="absolute top-1 right-1 bg-[#bddfef] text-black rounded-full p-0.5">
+                      <Check className="h-2 w-2" />
+                    </div>
+                  )}
+                  <div
+                    className={`p-2 rounded-full mb-2 flex items-center justify-center w-10 h-10 ${
+                      selectedManufacturer === manufacturer.name
+                        ? "bg-[#bddfef]/20 ring-1 ring-[#bddfef]/30"
+                        : "bg-gray-800/80"
+                    }`}
+                  >
                     <div className="text-black">{manufacturer.icon}</div>
                   </div>
-                  <span className="text-xs text-white text-center">{manufacturer.name}</span>
+                  <span
+                    className={`text-xs text-center ${
+                      selectedManufacturer === manufacturer.name ? "text-[#bddfef]" : "text-white"
+                    }`}
+                  >
+                    {manufacturer.name}
+                  </span>
                 </button>
               ))}
             </div>
@@ -762,7 +820,16 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
 
       return (
         <div>
-          {/* Search bar */}
+          {/* Section title with better visual hierarchy */}
+          <div className="mb-4">
+            <h3 className="text-base font-medium text-white flex items-center">
+              <Smartphone className="h-4 w-4 text-[#bddfef] mr-2" />
+              Select Your {selectedManufacturer} Model
+            </h3>
+            <p className="text-xs text-gray-400">Choose your specific model to check eSIM compatibility</p>
+          </div>
+
+          {/* Enhanced search bar */}
           <div className="mb-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -771,58 +838,71 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={`Search ${selectedManufacturer} models...`}
-                className="w-full pl-10 pr-4 py-3 border border-gray-600/30 bg-black backdrop-blur-sm text-white focus:outline-none focus:ring-2 focus:ring-[#bddfef]/50 focus:border-transparent rounded-lg"
+                className="w-full pl-10 pr-4 py-2 border border-gray-700/50 bg-black text-white focus:outline-none focus:ring-1 focus:ring-[#bddfef]/50 focus:border-transparent rounded-lg text-sm"
               />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                  aria-label="Clear search"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              )}
             </div>
           </div>
 
           {/* No results message */}
           {filteredModels.length === 0 && (
-            <div className="p-6 text-center border border-gray-700/50 rounded-lg bg-black">
-              <Search className="h-6 w-6 text-gray-500 mx-auto mb-2" />
-              <p className="text-gray-400 mb-2">No models found matching "{searchTerm}"</p>
+            <div className="p-4 text-center border border-gray-700/50 rounded-lg bg-black">
+              <Search className="h-5 w-5 text-gray-500 mx-auto mb-2" />
+              <p className="text-gray-400 mb-2 text-sm">No models found matching "{searchTerm}"</p>
               <button
                 onClick={() => setSearchTerm("")}
-                className="text-[#bddfef] text-sm hover:text-[#a5c7d7] transition-colors"
+                className="text-[#bddfef] text-xs hover:text-[#a5c7d7] transition-colors"
               >
                 Clear search
               </button>
             </div>
           )}
 
-          {/* Compatible models section */}
-          {compatibleModels.length > 0 && (
-            <div className="mb-6">
-              <div className="flex items-center mb-3">
-                <CheckCheck className="h-4 w-4 mr-2 text-green-400" />
-                <h4 className="text-sm font-medium text-white">Compatible Models</h4>
-                <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-300">
-                  {compatibleModels.length} models
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[200px] overflow-y-auto pr-1">
-                {compatibleModels.map((model) => (
+          {/* All models in a single list with clear compatibility indicators */}
+          {filteredModels.length > 0 && (
+            <div className="mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[400px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+                {filteredModels.map((model) => (
                   <button
                     key={model.name}
                     onClick={() => selectModel(model.name, model.compatible)}
-                    className="p-4 rounded-lg border border-gray-700/50 bg-black hover:border-green-500/30 hover:bg-green-900/10 flex items-center justify-between transition-all"
+                    className={`p-3 rounded-lg border flex items-center justify-between transition-all ${
+                      model.compatible
+                        ? "border-gray-700/50 bg-black hover:border-green-500/30 hover:bg-green-900/5"
+                        : "border-gray-700/50 bg-black hover:border-red-500/30 hover:bg-red-900/5"
+                    }`}
                   >
                     <div className="flex items-center">
-                      <div className="p-2 rounded-full bg-gray-800 mr-3 flex items-center justify-center w-8 h-8">
+                      <div className="p-1.5 rounded-full bg-gray-800 mr-2 flex items-center justify-center w-7 h-7">
                         <div className="text-black">{manufacturer.icon}</div>
                       </div>
                       <span className="text-sm text-white">{model.name}</span>
                     </div>
 
-                    <div className="px-2 py-1 rounded-full text-xs flex items-center bg-green-500/20 text-green-300">
-                      <Check className="h-3 w-3 mr-1" />
-                      Compatible
-                    </div>
-
-                    <div className="px-2 py-1 rounded-full text-xs flex items-center bg-green-500/20 text-green-300">
-                      <Check className="h-3 w-3 mr-1" />
-                      Compatible
+                    <div
+                      className={`px-2 py-0.5 rounded-full text-xs flex items-center ${
+                        model.compatible ? "bg-green-500/20 text-green-300" : "bg-red-500/20 text-red-300"
+                      }`}
+                    >
+                      {model.compatible ? (
+                        <>
+                          <Check className="h-3 w-3 mr-1" />
+                          Compatible
+                        </>
+                      ) : (
+                        <>
+                          <X className="h-3 w-3 mr-1" />
+                          Not Compatible
+                        </>
+                      )}
                     </div>
                   </button>
                 ))}
@@ -830,51 +910,27 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
             </div>
           )}
 
-          {/* Incompatible models section */}
-          {incompatibleModels.length > 0 && (
-            <div>
-              <div className="flex items-center mb-3">
-                <X className="h-4 w-4 mr-2 text-red-400" />
-                <h4 className="text-sm font-medium text-white">Incompatible Models</h4>
-                <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-300">
-                  {incompatibleModels.length} models
-                </span>
-              </div>
+          {/* Enhanced navigation and help section */}
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-2 pt-3 border-t border-gray-700/50">
+            <button
+              onClick={() => setCompatibilityStep(1)}
+              className="w-full sm:w-auto text-xs text-[#bddfef] flex items-center justify-center hover:text-[#a5c7d7] transition-colors px-3 py-1.5 rounded-lg border border-[#bddfef]/30 hover:bg-[#bddfef]/5"
+            >
+              <ArrowLeft className="h-3 w-3 mr-1" />
+              Back to Manufacturers
+            </button>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[200px] overflow-y-auto pr-1">
-                {incompatibleModels.map((model) => (
-                  <button
-                    key={model.name}
-                    onClick={() => selectModel(model.name, model.compatible)}
-                    className="p-4 rounded-lg border border-gray-700/50 bg-black hover:border-red-500/30 hover:bg-red-900/10 flex items-center justify-between transition-all"
-                  >
-                    <div className="flex items-center">
-                      <div className="p-2 rounded-full bg-gray-800 mr-3 flex items-center justify-center w-8 h-8">
-                        <div className="text-black">{manufacturer.icon}</div>
-                      </div>
-                      <span className="text-sm text-white">{model.name}</span>
-                    </div>
-
-                    <div className="px-2 py-1 rounded-full text-xs flex items-center bg-red-500/20 text-red-300">
-                      <X className="h-3 w-3 mr-1" />
-                      Not Compatible
-                    </div>
-                  </button>
-                ))}
-              </div>
+            <div className="text-center sm:text-right">
+              <p className="text-xs text-gray-400">
+                Don't see your model?
+                <button
+                  onClick={() => setCompatibilityStep(1)}
+                  className="ml-1 text-[#bddfef] hover:text-[#a5c7d7] transition-colors"
+                >
+                  Try entering it manually
+                </button>
+              </p>
             </div>
-          )}
-
-          <div className="mt-6 text-center">
-            <p className="text-sm text-gray-400">
-              Don't see your model?
-              <button
-                onClick={() => setCompatibilityStep(1)}
-                className="ml-1 text-[#bddfef] hover:text-[#a5c7d7] transition-colors"
-              >
-                Try entering it manually
-              </button>
-            </p>
           </div>
         </div>
       )
@@ -954,63 +1010,101 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
       </div>
 
       {/* Device Compatibility Checker - Improved UI */}
-      <div className="mb-8">
+      <div className="mb-10">
+        <h3 className="text-lg font-medium text-white mb-3 flex items-center">
+          <Smartphone className="h-5 w-5 text-[#bddfef] mr-2" />
+          Device Compatibility Check
+        </h3>
+
         <div
-          className={`rounded-xl border-2 transition-all ${
+          className={`rounded-xl border transition-all ${
             deviceCompatible === true
-              ? "border-green-500/50 bg-green-900/10"
+              ? "border-green-500/30 bg-black"
               : deviceCompatible === false
-                ? "border-red-500/50 bg-red-900/10"
-                : "border-[#bddfef]/50 bg-gradient-to-r from-[#bddfef]/10 to-[#bddfef]/5"
+                ? "border-red-500/30 bg-black"
+                : "border-gray-700/50 bg-black"
           }`}
         >
           {/* Header section */}
           <button
             onClick={() => setShowDeviceForm(!showDeviceForm)}
-            className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-[#bddfef]/15 transition-all"
+            className="w-full flex items-center justify-between p-5 rounded-xl hover:bg-[#bddfef]/10 transition-all"
           >
             <div className="flex items-center">
               <div
-                className={`p-2 rounded-full mr-3 ${deviceCompatible === true ? "bg-green-500/20" : deviceCompatible === false ? "bg-red-500/20" : "bg-[#bddfef]/20"}`}
+                className={`p-3 rounded-full mr-4 ${
+                  deviceCompatible === true
+                    ? "bg-green-500/20 ring-2 ring-green-500/30"
+                    : deviceCompatible === false
+                      ? "bg-red-500/20 ring-2 ring-red-500/30"
+                      : "bg-[#bddfef]/20 ring-2 ring-[#bddfef]/30"
+                }`}
               >
-                <Smartphone
-                  className={`h-5 w-5 ${deviceCompatible === true ? "text-green-400" : deviceCompatible === false ? "text-red-400" : "text-[#bddfef]"}`}
-                />
+                {deviceCompatible === true ? (
+                  <CheckCheck className="h-6 w-6 text-green-400" />
+                ) : deviceCompatible === false ? (
+                  <X className="h-6 w-6 text-red-400" />
+                ) : (
+                  <Smartphone className="h-6 w-6 text-[#bddfef]" />
+                )}
               </div>
               <div className="text-left">
-                <div className="flex items-center flex-wrap">
-                  <h3 className="font-medium text-white">Device Compatibility</h3>
+                <div className="flex items-center flex-wrap gap-2 mb-1">
+                  <h3 className="font-medium text-white text-lg">
+                    {deviceCompatible === null
+                      ? "Check Your Device"
+                      : deviceCompatible === true
+                        ? "Compatible Device"
+                        : "Incompatible Device"}
+                  </h3>
                   {deviceCompatible === null && (
-                    <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-[#bddfef]/20 text-[#bddfef]">
+                    <span className="text-xs px-3 py-1 rounded-full bg-[#bddfef]/20 text-[#bddfef] border border-[#bddfef]/30">
                       Required for eSIM
                     </span>
                   )}
                   {deviceCompatible === true && (
-                    <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-300 flex items-center">
+                    <span className="text-xs px-3 py-1 rounded-full bg-green-500/20 text-green-300 flex items-center border border-green-500/30">
                       <CheckCheck className="h-3 w-3 mr-1" />
-                      Compatible
+                      eSIM Compatible
                     </span>
                   )}
                   {deviceCompatible === false && (
-                    <span className="ml-2 text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 flex items-center">
+                    <span className="text-xs px-3 py-1 rounded-full bg-red-500/20 text-red-300 flex items-center border border-red-500/30">
                       <X className="h-3 w-3 mr-1" />
                       Not Compatible
                     </span>
                   )}
                 </div>
-                <p className="text-sm mt-1 max-w-2xl">
+                <p className="text-sm max-w-2xl">
                   {deviceCompatible === null ? (
-                    <span className="text-gray-400">Check if your phone supports eSIM before continuing</span>
+                    <span className="text-gray-300">
+                      We need to verify if your phone supports eSIM technology before proceeding
+                    </span>
                   ) : deviceCompatible === true ? (
                     <span className="text-green-300">
-                      Your {deviceInfo.manufacturer} {deviceInfo.model} supports eSIM technology
+                      Great! Your {deviceInfo.manufacturer} {deviceInfo.model} supports eSIM technology
                     </span>
                   ) : (
                     <span className="text-red-300">
-                      Your {deviceInfo.manufacturer} {deviceInfo.model} doesn't support eSIM
+                      Unfortunately, your {deviceInfo.manufacturer} {deviceInfo.model} doesn't support eSIM technology
                     </span>
                   )}
                 </p>
+
+                {deviceCompatible === null && (
+                  <div className="mt-3">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setShowDeviceForm(true)
+                      }}
+                      className="px-4 py-2 bg-[#bddfef] text-black rounded-lg text-sm font-medium hover:bg-[#a5c7d7] transition-colors flex items-center"
+                    >
+                      <Search className="h-4 w-4 mr-2" />
+                      Check Compatibility Now
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex items-center">
@@ -1021,15 +1115,35 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
                     resetCompatibilityCheck()
                     setShowDeviceForm(true)
                   }}
-                  className={`mr-3 text-xs px-3 py-1 rounded-full flex items-center ${deviceCompatible ? "bg-green-500/20 text-green-300 hover:bg-green-500/30" : "bg-red-500/20 text-red-300 hover:bg-red-500/30"}`}
+                  className={`mr-3 text-xs px-3 py-1.5 rounded-lg flex items-center ${
+                    deviceCompatible
+                      ? "bg-green-500/20 text-green-300 hover:bg-green-500/30 border border-green-500/30"
+                      : "bg-red-500/20 text-red-300 hover:bg-red-500/30 border border-red-500/30"
+                  }`}
                 >
                   <RefreshCw className="h-3 w-3 mr-1" />
-                  Check Another
+                  Check Another Device
                 </button>
               )}
-              <ChevronDown
-                className={`h-5 w-5 ${deviceCompatible === true ? "text-green-400" : deviceCompatible === false ? "text-red-400" : "text-[#bddfef]"} transition-transform duration-300 ${showDeviceForm ? "rotate-180" : "rotate-0"}`}
-              />
+              <div
+                className={`p-2 rounded-full ${
+                  deviceCompatible === true
+                    ? "bg-green-500/20"
+                    : deviceCompatible === false
+                      ? "bg-red-500/20"
+                      : "bg-[#bddfef]/20"
+                }`}
+              >
+                <ChevronDown
+                  className={`h-5 w-5 ${
+                    deviceCompatible === true
+                      ? "text-green-400"
+                      : deviceCompatible === false
+                        ? "text-red-400"
+                        : "text-[#bddfef]"
+                  } transition-transform duration-300 ${showDeviceForm ? "rotate-180" : "rotate-0"}`}
+                />
+              </div>
             </div>
           </button>
 
@@ -1043,30 +1157,38 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden border-t border-gray-700/50"
               >
-                <div className="p-5">
+                <div className="p-6">
                   {/* Progress indicator - only show when in the selection process and not showing results */}
                   {!showCompatibilityResult && (
-                    <div className="mb-5">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="font-medium text-white">
-                          {compatibilityStep === 1
-                            ? "Select your device manufacturer"
-                            : `Select your ${selectedManufacturer} model`}
+                    <div className="mb-6">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                        <h3 className="font-medium text-white text-lg flex items-center">
+                          {compatibilityStep === 1 ? (
+                            <>
+                              <Search className="h-5 w-5 text-[#bddfef] mr-2" />
+                              Select your device manufacturer
+                            </>
+                          ) : (
+                            <>
+                              <Smartphone className="h-5 w-5 text-[#bddfef] mr-2" />
+                              Select your {selectedManufacturer} model
+                            </>
+                          )}
                         </h3>
 
                         <div className="flex items-center">
                           {compatibilityStep === 2 && (
                             <button
                               onClick={() => setCompatibilityStep(1)}
-                              className="text-sm text-[#bddfef] flex items-center hover:text-[#a5c7d7] transition-colors mr-4"
+                              className="text-sm text-[#bddfef] flex items-center hover:text-[#a5c7d7] transition-colors mr-4 px-3 py-1 rounded-lg border border-[#bddfef]/30"
                             >
                               <ArrowLeft className="h-4 w-4 mr-1" />
-                              Back
+                              Back to Manufacturers
                             </button>
                           )}
-                          <div className="flex items-center">
-                            <span className="text-xs text-gray-400 mr-2">Step {compatibilityStep} of 2</span>
-                            <div className="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
+                          <div className="flex items-center bg-black/30 px-3 py-1.5 rounded-lg">
+                            <span className="text-xs text-gray-300 mr-2">Step {compatibilityStep} of 2</span>
+                            <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
                               <div
                                 className="h-full bg-[#bddfef] rounded-full transition-all duration-300"
                                 style={{ width: `${(compatibilityStep / 2) * 100}%` }}
@@ -1076,14 +1198,21 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
                         </div>
                       </div>
 
-                      <div className="p-3 bg-[#bddfef]/10 backdrop-blur-sm border border-[#bddfef]/30 rounded-lg mb-4">
+                      <div className="p-4 bg-[#bddfef]/10 backdrop-blur-sm border border-[#bddfef]/30 rounded-lg mb-4">
                         <div className="flex items-start">
-                          <Info className="h-4 w-4 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
-                          <p className="text-sm text-gray-300">
-                            {compatibilityStep === 1
-                              ? "Select your device manufacturer below. Most smartphones from 2020 or newer support eSIM technology."
-                              : `Select your ${selectedManufacturer} model to check if it supports eSIM technology.`}
-                          </p>
+                          <Info className="h-5 w-5 text-[#bddfef] mr-3 mt-0.5 flex-shrink-0" />
+                          <div>
+                            <p className="text-sm text-white font-medium mb-1">
+                              {compatibilityStep === 1
+                                ? "Select Your Device Manufacturer"
+                                : `Select Your ${selectedManufacturer} Model`}
+                            </p>
+                            <p className="text-sm text-gray-300">
+                              {compatibilityStep === 1
+                                ? "Most smartphones from 2020 or newer support eSIM technology. Select your device manufacturer to continue."
+                                : `Select your specific ${selectedManufacturer} model to check if it supports eSIM technology.`}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1093,10 +1222,10 @@ export default function MobileSim({ orderData, updateOrderData }: MobileSimProps
 
                   {/* Close button at the bottom */}
                   {showCompatibilityResult && (
-                    <div className="mt-4 flex justify-end">
+                    <div className="mt-6 flex justify-end">
                       <button
                         onClick={() => setShowDeviceForm(false)}
-                        className="px-4 py-2 text-sm text-white bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+                        className="px-5 py-2.5 text-sm text-white bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors font-medium"
                       >
                         Close
                       </button>

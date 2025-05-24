@@ -129,11 +129,16 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
     return oneTimeCosts
   }
 
+  // Get contract length based on selected plan
+  const getContractLength = () => {
+    return "Monthly" // All plans are now monthly contracts
+  }
+
   return (
     <div className="bg-black rounded-xl border border-gray-700/50 overflow-hidden">
       <div className="bg-gray-900/30 border-b border-gray-800/60 px-5 py-4 flex justify-between items-center">
         <h3 className="text-white font-medium flex items-center">
-          <Package className="h-4 w-4 mr-3 text-[#bddfef]" />
+          <Package className="h-4 w-4 mr-2 text-[#bddfef]" />
           Plan Details
         </h3>
         <button
@@ -154,11 +159,11 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="p-5 space-y-5">
+            <div className="p-5 space-y-4">
               {/* Broadband Plan */}
               {orderData?.plan ? (
                 <div className="pb-4 border-b border-gray-700/30">
-                  <div className="flex justify-between items-start mb-3">
+                  <div className="flex justify-between items-start mb-4">
                     <div className="flex items-start">
                       <Wifi className="h-4 w-4 text-[#bddfef] mr-3 mt-0.5 flex-shrink-0" />
                       <div>
@@ -331,7 +336,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="overflow-hidden mt-3 ml-7 space-y-2"
+                        className="overflow-hidden mt-3 ml-7 space-y-3"
                       >
                         <div className="flex justify-between">
                           <span className="text-gray-400 text-xs">Contract length:</span>
@@ -414,7 +419,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                           </div>
 
                           {/* Inflation Protection Section */}
-                          <div className="mt-4 pt-4 border-t border-[#bddfef]/20 ml-6">
+                          <div className="mt-4 pt-3 border-t border-[#bddfef]/20 ml-6">
                             <div className="flex items-start mb-2">
                               <TrendingUp className="h-3.5 w-3.5 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
                               <p className="text-[#bddfef] text-xs font-medium">Inflation Protection</p>

@@ -1171,6 +1171,205 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
                   </div>
                 </div>
 
+                {/* Transaction Preview */}
+                <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/50 overflow-hidden">
+                  <h4 className="text-sm font-medium text-white mb-3">Transaction Preview</h4>
+
+                  <div className="relative bg-black/50 rounded-lg p-4 border border-gray-800">
+                    {/* Transaction Flow Visualization */}
+                    <div className="flex items-center justify-between mb-6 relative">
+                      {/* From Wallet */}
+                      <div className="flex flex-col items-center">
+                        <div className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center mb-2">
+                          <User className="h-6 w-6 text-gray-400" />
+                        </div>
+                        <span className="text-xs text-gray-400">Your Wallet</span>
+                      </div>
+
+                      {/* Arrow and Amount */}
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="w-full h-0.5 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 relative">
+                          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gray-900 px-2 py-1 rounded border border-gray-700">
+                            <span className="text-xs font-medium text-white">
+                              {paymentData.cryptoType === "bitcoin"
+                                ? "0.00045 BTC"
+                                : paymentData.cryptoType === "ethereum"
+                                  ? "0.0082 ETH"
+                                  : paymentData.cryptoType === "litecoin"
+                                    ? "0.15 LTC"
+                                    : "25.4 XRP"}
+                            </span>
+                          </div>
+                          <div className="absolute -bottom-7 left-1/2 transform -translate-x-1/2">
+                            <span className="text-xs text-gray-500">≈ £{calculateTotal()}</span>
+                          </div>
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 12H19M19 12L13 6M19 12L13 18"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="text-gray-400"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* To Wallet */}
+                      <div className="flex flex-col items-center">
+                        <div
+                          className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${
+                            paymentData.cryptoType === "bitcoin"
+                              ? "bg-orange-900/30 border-orange-500/50"
+                              : paymentData.cryptoType === "ethereum"
+                                ? "bg-blue-900/30 border-blue-500/50"
+                                : paymentData.cryptoType === "litecoin"
+                                  ? "bg-gray-700 border-gray-500/50"
+                                  : "bg-blue-900/30 border-blue-400/50"
+                          } border`}
+                        >
+                          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            {paymentData.cryptoType === "bitcoin" && (
+                              <path
+                                d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.17-1.064-.25l.53-2.12-1.32-.33-.54 2.153c-.285-.065-.565-.13-.84-.2l-1.815-.45-.35 1.4s.975.225.955.238c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.415-.614.32.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.17c.36.1.705.19 1.05.273l-.54 2.154 1.32.33.54-2.18c2.24.427 3.93.255 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.22 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.52 2.75 2.084v.006z"
+                                fill="currentColor"
+                                className="text-orange-400"
+                              />
+                            )}
+                            {paymentData.cryptoType === "ethereum" && (
+                              <path
+                                d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"
+                                fill="currentColor"
+                                className="text-blue-400"
+                              />
+                            )}
+                            {paymentData.cryptoType === "litecoin" && (
+                              <path
+                                d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-.262 3.678h2.584a.343.343 0 0 1 .33.435l-2.03 6.918 1.905-.582.408-1.386a.343.343 0 0 1 .33-.252h1.83a.343.343 0 0 1 .33.435l-.636 2.175 2.156-.66a.343.343 0 0 1 .435.331v1.131a.343.343 0 0 1-.234.33l-2.743.835-.999 3.38a.343.343 0 0 1-.33.252H12.23a.343.343 0 0 1-.33-.435l.852-2.886-1.905.582-.852 2.886a.343.343 0 0 1-.33.252H7.485a.343.343 0 0 1-.33-.435l.852-2.886-3.041.93a.343.343 0 0 1-.435-.331v-1.131a.343.343 0 0 1 .234-.33l3.628-1.105 1.327-4.512-3.041.93a.343.343 0 0 1-.435-.331V7.485a.343.343 0 0 1 .234-.33l3.628-1.105.999-3.38a.343.343 0 0 1 .33-.252h2.152z"
+                                fill="currentColor"
+                                className="text-gray-400"
+                              />
+                            )}
+                            {paymentData.cryptoType === "ripple" && (
+                              <path
+                                d="M19.77 10.32c-.52 0-1.03.25-1.34.67a1.97 1.97 0 0 0 .01 2.4c.3.42.82.67 1.33.67a1.95 1.95 0 0 0 1.93-1.97c0-1.04-.87-1.77-1.93-1.77zm-15.54 0c-1.06 0-1.93.73-1.93 1.77 0 1.08.83 1.97 1.93 1.97.51 0 1.03-.25 1.33-.67a1.97 1.97 0 0 0 .01-2.4c-.31-.42-.82-.67-1.34-.67zm11.91-7.96c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm-8.28 0c-1.06 0-1.93.73-1.93 1.77 0 1.08.83 1.97 1.93 1.97.51 0 1.03-.25 1.33-.67a1.97 1.97 0 0 0 .01-2.4c-.3-.42-.82-.67-1.34-.67zm4.14 3.98c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm0 7.96c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm-4.14 3.98c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm8.28 0c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97z"
+                                fill="currentColor"
+                                className="text-blue-400"
+                              />
+                            )}
+                          </svg>
+                        </div>
+                        <span className="text-xs text-gray-400">Olilo</span>
+                      </div>
+                    </div>
+
+                    {/* Transaction Details */}
+                    <div className="grid grid-cols-2 gap-3 text-xs">
+                      <div className="bg-black/50 rounded p-2 border border-gray-800">
+                        <span className="text-gray-500 block mb-1">Estimated Time</span>
+                        <span className="text-white font-medium flex items-center">
+                          <svg
+                            className="h-3 w-3 mr-1 text-green-400"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+                            <path
+                              d="M12 8V12L15 15"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          ~10 minutes
+                        </span>
+                      </div>
+                      <div className="bg-black/50 rounded p-2 border border-gray-800">
+                        <span className="text-gray-500 block mb-1">Network Fee</span>
+                        <span className="text-white font-medium flex items-center">
+                          <svg
+                            className="h-3 w-3 mr-1 text-green-400"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M5 12L9 16L19 6"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          Low Priority
+                        </span>
+                      </div>
+                      <div className="bg-black/50 rounded p-2 border border-gray-800">
+                        <span className="text-gray-500 block mb-1">Confirmations</span>
+                        <span className="text-white font-medium">1 required</span>
+                      </div>
+                      <div className="bg-black/50 rounded p-2 border border-gray-800">
+                        <span className="text-gray-500 block mb-1">Status</span>
+                        <span className="text-yellow-400 font-medium flex items-center">
+                          <svg
+                            className="h-3 w-3 mr-1"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                          Pending Payment
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Transaction ID Preview */}
+                    <div className="mt-3 bg-black/50 rounded p-2 border border-gray-800">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-gray-500 text-xs">Transaction ID</span>
+                        <span className="text-xs text-gray-500">After payment</span>
+                      </div>
+                      <div className="bg-gray-900 rounded p-1.5 flex items-center justify-between">
+                        <div className="flex-1 overflow-hidden">
+                          <div className="h-2.5 bg-gray-800 rounded-full w-4/5 animate-pulse"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-center">
+                    <span className="text-xs text-gray-500 flex items-center">
+                      <svg className="h-3 w-3 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M13 16H12V12H11M12 8H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      This is a preview. Actual transaction details will be provided after checkout.
+                    </span>
+                  </div>
+                </div>
+
                 {/* Wallet Address */}
                 <div>
                   <div className="flex justify-between items-center mb-2">

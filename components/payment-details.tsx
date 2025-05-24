@@ -987,48 +987,200 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
                 <h3 className="font-bold text-white">Cryptocurrency Payment</h3>
               </div>
 
-              <div className="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
+              <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-lg p-4 mb-6">
                 <div className="flex items-start">
                   <AlertCircle className="h-5 w-5 text-purple-400 mt-0.5 mr-3 flex-shrink-0" />
                   <div>
-                    <p className="text-purple-300 font-medium mb-1">Cryptocurrency Information</p>
+                    <p className="text-purple-300 font-medium mb-1">Pay with Cryptocurrency</p>
                     <p className="text-sm text-purple-400/80">
-                      Select your preferred cryptocurrency and provide your wallet address. Once your order is
-                      confirmed, you will receive payment instructions with the exact amount and address to complete
-                      your transaction.
+                      Select your preferred cryptocurrency below. You'll receive payment instructions after checkout.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-6">
+                {/* Crypto Selection */}
                 <div>
                   <label className="block text-sm font-medium text-gray-200 mb-3">
-                    Select Cryptocurrency <span className="text-red-400 ml-1">*</span>
+                    Choose Cryptocurrency <span className="text-red-400 ml-1">*</span>
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {["bitcoin", "ethereum", "litecoin", "ripple"].map((crypto) => (
-                      <button
-                        key={crypto}
-                        type="button"
-                        onClick={() => handleCryptoTypeChange(crypto)}
-                        className={`flex items-center justify-center gap-2 p-3 rounded-md border transition-all ${
-                          paymentData.cryptoType === crypto
-                            ? "bg-purple-900/30 border-purple-500/50 text-purple-300"
-                            : "bg-gray-900/30 border-gray-700/50 text-gray-400 hover:bg-gray-900/50"
+                    <button
+                      type="button"
+                      onClick={() => handleCryptoTypeChange("bitcoin")}
+                      className={`relative flex flex-col items-center justify-center p-4 rounded-md border transition-all ${
+                        paymentData.cryptoType === "bitcoin"
+                          ? "bg-gradient-to-b from-orange-900/30 to-orange-900/10 border-orange-500/50 text-orange-300"
+                          : "bg-gray-900/30 border-gray-700/50 text-gray-400 hover:bg-gray-900/50"
+                      }`}
+                    >
+                      <div
+                        className={`w-10 h-10 rounded-full mb-2 flex items-center justify-center ${
+                          paymentData.cryptoType === "bitcoin" ? "bg-orange-500/20" : "bg-gray-800/50"
                         }`}
                       >
-                        <Bitcoin className="h-4 w-4" />
-                        <span className="capitalize">{crypto}</span>
-                      </button>
-                    ))}
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M23.638 14.904c-1.602 6.43-8.113 10.34-14.542 8.736C2.67 22.05-1.244 15.525.362 9.105 1.962 2.67 8.475-1.243 14.9.358c6.43 1.605 10.342 8.115 8.738 14.548v-.002zm-6.35-4.613c.24-1.59-.974-2.45-2.64-3.03l.54-2.153-1.315-.33-.525 2.107c-.345-.087-.705-.17-1.064-.25l.53-2.12-1.32-.33-.54 2.153c-.285-.065-.565-.13-.84-.2l-1.815-.45-.35 1.4s.975.225.955.238c.535.136.63.486.615.766l-1.477 5.92c-.075.166-.24.415-.614.32.015.02-.96-.24-.96-.24l-.66 1.51 1.71.426.93.242-.54 2.19 1.32.327.54-2.17c.36.1.705.19 1.05.273l-.54 2.154 1.32.33.54-2.18c2.24.427 3.93.255 4.64-1.774.57-1.637-.03-2.58-1.217-3.196.854-.193 1.5-.76 1.68-1.93h.01zm-3.01 4.22c-.404 1.64-3.157.75-4.05.53l.72-2.9c.896.22 3.757.67 3.33 2.37zm.41-4.24c-.37 1.49-2.662.735-3.405.55l.654-2.64c.744.18 3.137.52 2.75 2.084v.006z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Bitcoin</span>
+                      <span className="text-xs mt-1 opacity-70">BTC</span>
+                      {paymentData.cryptoType === "bitcoin" && (
+                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                          <Check className="h-3 w-3 text-black" />
+                        </div>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCryptoTypeChange("ethereum")}
+                      className={`relative flex flex-col items-center justify-center p-4 rounded-md border transition-all ${
+                        paymentData.cryptoType === "ethereum"
+                          ? "bg-gradient-to-b from-blue-900/30 to-blue-900/10 border-blue-500/50 text-blue-300"
+                          : "bg-gray-900/30 border-gray-700/50 text-gray-400 hover:bg-gray-900/50"
+                      }`}
+                    >
+                      <div
+                        className={`w-10 h-10 rounded-full mb-2 flex items-center justify-center ${
+                          paymentData.cryptoType === "ethereum" ? "bg-blue-500/20" : "bg-gray-800/50"
+                        }`}
+                      >
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Ethereum</span>
+                      <span className="text-xs mt-1 opacity-70">ETH</span>
+                      {paymentData.cryptoType === "ethereum" && (
+                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                          <Check className="h-3 w-3 text-black" />
+                        </div>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCryptoTypeChange("litecoin")}
+                      className={`relative flex flex-col items-center justify-center p-4 rounded-md border transition-all ${
+                        paymentData.cryptoType === "litecoin"
+                          ? "bg-gradient-to-b from-gray-500/30 to-gray-500/10 border-gray-400/50 text-gray-300"
+                          : "bg-gray-900/30 border-gray-700/50 text-gray-400 hover:bg-gray-900/50"
+                      }`}
+                    >
+                      <div
+                        className={`w-10 h-10 rounded-full mb-2 flex items-center justify-center ${
+                          paymentData.cryptoType === "litecoin" ? "bg-gray-500/20" : "bg-gray-800/50"
+                        }`}
+                      >
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-.262 3.678h2.584a.343.343 0 0 1 .33.435l-2.03 6.918 1.905-.582.408-1.386a.343.343 0 0 1 .33-.252h1.83a.343.343 0 0 1 .33.435l-.636 2.175 2.156-.66a.343.343 0 0 1 .435.331v1.131a.343.343 0 0 1-.234.33l-2.743.835-.999 3.38a.343.343 0 0 1-.33.252H12.23a.343.343 0 0 1-.33-.435l.852-2.886-1.905.582-.852 2.886a.343.343 0 0 1-.33.252H7.485a.343.343 0 0 1-.33-.435l.852-2.886-3.041.93a.343.343 0 0 1-.435-.331v-1.131a.343.343 0 0 1 .234-.33l3.628-1.105 1.327-4.512-3.041.93a.343.343 0 0 1-.435-.331V7.485a.343.343 0 0 1 .234-.33l3.628-1.105.999-3.38a.343.343 0 0 1 .33-.252h2.152z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Litecoin</span>
+                      <span className="text-xs mt-1 opacity-70">LTC</span>
+                      {paymentData.cryptoType === "litecoin" && (
+                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                          <Check className="h-3 w-3 text-black" />
+                        </div>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCryptoTypeChange("ripple")}
+                      className={`relative flex flex-col items-center justify-center p-4 rounded-md border transition-all ${
+                        paymentData.cryptoType === "ripple"
+                          ? "bg-gradient-to-b from-blue-900/30 to-blue-900/10 border-blue-400/50 text-blue-300"
+                          : "bg-gray-900/30 border-gray-700/50 text-gray-400 hover:bg-gray-900/50"
+                      }`}
+                    >
+                      <div
+                        className={`w-10 h-10 rounded-full mb-2 flex items-center justify-center ${
+                          paymentData.cryptoType === "ripple" ? "bg-blue-400/20" : "bg-gray-800/50"
+                        }`}
+                      >
+                        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M19.77 10.32c-.52 0-1.03.25-1.34.67a1.97 1.97 0 0 0 .01 2.4c.3.42.82.67 1.33.67a1.95 1.95 0 0 0 1.93-1.97c0-1.04-.87-1.77-1.93-1.77zm-15.54 0c-1.06 0-1.93.73-1.93 1.77 0 1.08.83 1.97 1.93 1.97.51 0 1.03-.25 1.33-.67a1.97 1.97 0 0 0 .01-2.4c-.31-.42-.82-.67-1.34-.67zm11.91-7.96c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm-8.28 0c-1.06 0-1.93.73-1.93 1.77 0 1.08.83 1.97 1.93 1.97.51 0 1.03-.25 1.33-.67a1.97 1.97 0 0 0 .01-2.4c-.3-.42-.82-.67-1.34-.67zm4.14 3.98c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm0 7.96c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm-4.14 3.98c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97zm8.28 0c-.51 0-1.03.25-1.33.67a1.97 1.97 0 0 0-.01 2.4c.3.42.82.67 1.34.67 1.06 0 1.93-.73 1.93-1.77.04-1.04-.83-1.97-1.93-1.97z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </div>
+                      <span className="font-medium">Ripple</span>
+                      <span className="text-xs mt-1 opacity-70">XRP</span>
+                      {paymentData.cryptoType === "ripple" && (
+                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                          <Check className="h-3 w-3 text-black" />
+                        </div>
+                      )}
+                    </button>
                   </div>
                 </div>
 
+                {/* Transaction Details */}
+                <div className="bg-gray-900/30 rounded-lg p-4 border border-gray-700/50">
+                  <h4 className="text-sm font-medium text-white mb-3">Transaction Details</h4>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-400">Amount</span>
+                      <span className="text-white font-medium">£{calculateTotal()}</span>
+                    </div>
+
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-400">
+                        Estimated{" "}
+                        {paymentData.cryptoType === "bitcoin"
+                          ? "BTC"
+                          : paymentData.cryptoType === "ethereum"
+                            ? "ETH"
+                            : paymentData.cryptoType === "litecoin"
+                              ? "LTC"
+                              : "XRP"}
+                      </span>
+                      <span className="text-white font-medium">
+                        {paymentData.cryptoType === "bitcoin"
+                          ? "0.00045"
+                          : paymentData.cryptoType === "ethereum"
+                            ? "0.0082"
+                            : paymentData.cryptoType === "litecoin"
+                              ? "0.15"
+                              : "25.4"}
+                        <span className="text-gray-500 text-xs ml-1">(estimated)</span>
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-400">Network Fee</span>
+                      <span className="text-white font-medium">
+                        <span className="text-green-400">Low</span>
+                        <span className="text-gray-500 text-xs ml-1">(~10 min)</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Wallet Address */}
                 <div>
-                  <label htmlFor="walletAddress" className="flex items-center text-sm font-medium text-gray-200 mb-1.5">
-                    Your Wallet Address <span className="text-red-400 ml-1">*</span>
-                  </label>
+                  <div className="flex justify-between items-center mb-2">
+                    <label htmlFor="walletAddress" className="text-sm font-medium text-gray-200">
+                      Your {paymentData.cryptoType.charAt(0).toUpperCase() + paymentData.cryptoType.slice(1)} Wallet
+                      Address <span className="text-red-400">*</span>
+                    </label>
+                    <span className="text-xs text-gray-500">For refunds if needed</span>
+                  </div>
+
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <Bitcoin
@@ -1056,12 +1208,28 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
                       </div>
                     )}
                   </div>
+                  {hasError("walletAddress") && (
+                    <p className="mt-1 text-xs text-red-400 flex items-center">
+                      <AlertCircle className="h-3 w-3 mr-1" />
+                      Please enter a valid wallet address
+                    </p>
+                  )}
                 </div>
 
-                <div className="mt-4 p-3 rounded-md bg-purple-900/10 border border-purple-500/20">
-                  <p className="text-sm text-purple-300">
-                    <span className="font-medium">Important:</span> Please ensure you have entered the correct wallet
-                    address. Cryptocurrency transactions cannot be reversed once completed.
+                {/* Information Box */}
+                <div className="mt-4 p-4 rounded-md bg-purple-900/10 border border-purple-500/20">
+                  <h4 className="text-sm font-medium text-purple-300 mb-2 flex items-center">
+                    <AlertCircle className="h-4 w-4 mr-2" />
+                    How it works
+                  </h4>
+                  <ol className="space-y-2 text-sm text-purple-300/80 list-decimal pl-5">
+                    <li>After checkout, you'll receive payment instructions via email</li>
+                    <li>Send the exact amount to the provided address within 30 minutes</li>
+                    <li>Once confirmed (typically 10-30 minutes), your order will be processed</li>
+                  </ol>
+                  <p className="text-xs text-purple-300/70 mt-3">
+                    <span className="font-medium">Important:</span> Cryptocurrency transactions cannot be reversed once
+                    completed. Please ensure you have entered the correct wallet address.
                   </p>
                 </div>
               </div>

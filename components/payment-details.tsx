@@ -361,7 +361,10 @@ export default function PaymentDetails({ orderData, updateOrderData, errors = {}
         </div>
 
         {/* Refer a Friend Section */}
-        <div className="bg-black border border-gray-700/50 rounded-xl overflow-hidden">
+        <div className="bg-gradient-to-b from-black to-gray-900/90 border border-purple-500/30 rounded-xl overflow-hidden shadow-lg shadow-purple-900/10 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-[#bddfef]/10 via-transparent to-transparent rounded-full blur-xl opacity-30 pointer-events-none"></div>
+
           <button
             onClick={() => setShowReferralSection(!showReferralSection)}
             className="w-full flex items-center justify-between p-5 hover:bg-gray-900/30 transition-colors"

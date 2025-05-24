@@ -96,7 +96,7 @@ export default function ConfirmationModal({
               </div>
 
               {/* Actions */}
-              <div className="flex items-center justify-end gap-4 p-5 pt-3">
+              <div className="flex items-center justify-end gap-3 p-5 pt-3">
                 <motion.button
                   onClick={onClose}
                   className="px-4 py-2 rounded-lg btn-muted"

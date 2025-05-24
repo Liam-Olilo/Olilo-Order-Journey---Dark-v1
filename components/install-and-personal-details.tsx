@@ -233,12 +233,12 @@ export default function InstallAndPersonalDetails({
   return (
     <div>
       {/* Installation Section */}
-      <div className="mb-6">
+      <div className="mb-12">
         {errors.installOption && errors.installOption.length > 0 && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mb-4 p-3 bg-red-900/20 border border-red-500/50 rounded-xl"
+            className="mb-4 p-3 bg-red-900/20 border border-red-500/50 rounded-lg"
           >
             {errors.installOption.map((error, index) => (
               <p key={index} className="text-sm text-red-400 flex items-center">
@@ -251,8 +251,11 @@ export default function InstallAndPersonalDetails({
 
         <motion.div initial="hidden" animate="visible" variants={containerVariants} className="space-y-6">
           {/* Installation Info Section */}
-          <motion.div variants={itemVariants} className="bg-black border border-[#a5c7d7]/30 p-5 rounded-xl shadow-md">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0">
+          <motion.div
+            variants={itemVariants}
+            className="bg-black border border-[#a5c7d7]/30 p-4 sm:p-5 rounded-xl shadow-md"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-0">
               <div className="bg-[#a5c7d7]/20 p-2 rounded-full mr-0 sm:mr-3 flex-shrink-0 border border-[#a5c7d7]/30 self-start">
                 <Info className="h-5 w-5 text-[#a5c7d7]" />
               </div>
@@ -286,7 +289,7 @@ export default function InstallAndPersonalDetails({
                       transition={{ duration: 0.3 }}
                       className="mt-3 overflow-hidden"
                     >
-                      <div className="space-y-3 text-sm text-gray-300 p-3 bg-[#a5c7d7]/5 rounded-xl border border-[#a5c7d7]/20">
+                      <div className="space-y-3 text-sm text-gray-300 p-3 bg-[#a5c7d7]/5 rounded-lg border border-[#a5c7d7]/20">
                         <div className="flex items-start">
                           <Clock className="h-4 w-4 text-[#a5c7d7] mr-2 mt-0.5" />
                           <p>Installation typically takes 1-2 hours depending on your property.</p>
@@ -325,9 +328,9 @@ export default function InstallAndPersonalDetails({
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-black border border-gray-700/30 rounded-xl p-5"
+              className="bg-black border border-gray-700/30 rounded-lg p-4"
             >
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
                 {generateCalendarData()
                   .filter((day) => day.isCurrentMonth && day.isSelectable)
                   .slice(0, 10)
@@ -340,7 +343,7 @@ export default function InstallAndPersonalDetails({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.2, delay: index * 0.03 }}
                         onClick={() => handleDateSelect(day.date)}
-                        className={`border p-3 cursor-pointer transition-all rounded-xl flex flex-col items-center justify-center ${
+                        className={`border p-3 cursor-pointer transition-all rounded-lg flex flex-col items-center justify-center ${
                           selectedDate === formattedDate
                             ? "border-btn-filled bg-btn-filled/20"
                             : "border-gray-600/50 bg-zinc-900 hover:border-gray-600/50"
@@ -377,7 +380,7 @@ export default function InstallAndPersonalDetails({
                   Select Time Slot
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {timeSlots.map((timeSlot, index) => (
                     <motion.div
                       key={index}
@@ -387,7 +390,7 @@ export default function InstallAndPersonalDetails({
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleTimeSlotSelect(timeSlot)}
-                      className={`border p-4 cursor-pointer transition-all rounded-xl ${
+                      className={`border p-4 cursor-pointer transition-all rounded-lg ${
                         selectedTimeSlot === timeSlot
                           ? "border-btn-filled bg-btn-filled/20"
                           : "border-gray-600/50 bg-gray-900/30 hover:border-gray-600/50"
@@ -434,7 +437,7 @@ export default function InstallAndPersonalDetails({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="border border-gray-700/30 bg-black p-5 rounded-xl"
+                className="border border-gray-700/30 bg-black p-5 rounded-lg"
               >
                 <h3 className="font-bold text-white mb-4 flex items-center">
                   <Bell className="h-5 w-5 text-[#a5c7d7] mr-2" />
@@ -519,8 +522,8 @@ export default function InstallAndPersonalDetails({
           {/* Confirmation Message */}
           <AnimatePresence>
             {selectedDate && selectedTimeSlot && (
-              <motion.div className="bg-[#645bc5]/20 backdrop-blur-sm border border-[#645bc5]/50 p-5 rounded-xl shadow-md shadow-[#645bc5]/15">
-                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0">
+              <motion.div className="bg-[#645bc5]/20 backdrop-blur-sm border border-[#645bc5]/50 p-4 rounded-xl shadow-md shadow-[#645bc5]/15">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-0">
                   <div className="bg-[#645bc5]/30 p-2 rounded-full mr-0 sm:mr-3 flex-shrink-0 border border-[#645bc5]/50 self-center sm:self-start">
                     <CheckCircle className="h-5 w-5 text-[#9992eb]" />
                   </div>
@@ -549,7 +552,7 @@ export default function InstallAndPersonalDetails({
 
       {/* Personal Details Section */}
       <div className="mt-12 pt-8 border-t border-gray-700/50">
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-6">Your Details</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Your Details</h2>
 
         {errors.personalDetails && errors.personalDetails.length > 0 && (
           <div className="mb-4 p-3 bg-red-900/20 border-l-4 border-red-500">
@@ -562,7 +565,7 @@ export default function InstallAndPersonalDetails({
           </div>
         )}
 
-        <div className="bg-black border border-gray-700/50 rounded-xl p-5 shadow-md">
+        <div className="bg-black border border-gray-700/50 rounded-lg p-4 sm:p-5 shadow-md">
           <Info className="h-5 w-5 text-gray-400 mr-3 mt-0.5" />
           <div>
             <h3 className="font-medium text-gray-300">Why we need your details</h3>
@@ -573,7 +576,7 @@ export default function InstallAndPersonalDetails({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">
               First Name*
@@ -625,7 +628,7 @@ export default function InstallAndPersonalDetails({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
               Email Address*
@@ -677,7 +680,7 @@ export default function InstallAndPersonalDetails({
           </div>
         </div>
 
-        <h3 className="font-bold text-white mb-4 mt-4">Installation Address</h3>
+        <h3 className="font-bold text-white mb-3 sm:mb-4 mt-4">Installation Address</h3>
 
         <div className="mb-4">
           <label htmlFor="addressLine1" className="block text-sm font-medium text-gray-300 mb-1">
@@ -715,7 +718,7 @@ export default function InstallAndPersonalDetails({
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           <div>
             <label htmlFor="city" className="block text-sm font-medium text-gray-300 mb-1">
               City/Town*
@@ -765,13 +768,13 @@ export default function InstallAndPersonalDetails({
         </div>
 
         <div className="mt-4 sm:mt-6">
-          <div className="flex items-start space-x-3 p-3 rounded-xl bg-gray-900/30 border border-gray-700/50">
+          <div className="flex items-start space-x-3 p-3 rounded-md bg-gray-900/30 border border-gray-700/50">
             <input
               type="checkbox"
               name="marketingConsent"
               checked={formData.marketingConsent}
               onChange={handleChange}
-              className="mt-1 h-4 w-4 text-[#a5c7d7] focus:ring-[#a5c7d7]/50 border-gray-600/50 bg-gray-700/30 rounded-xl flex-shrink-0"
+              className="mt-1 h-4 w-4 text-[#a5c7d7] focus:ring-[#a5c7d7]/50 border-gray-600/50 bg-gray-700/30 rounded flex-shrink-0"
             />
             <span className="text-sm text-gray-300">
               I'd like to receive updates about special offers, product news, and exclusive promotions via email. You

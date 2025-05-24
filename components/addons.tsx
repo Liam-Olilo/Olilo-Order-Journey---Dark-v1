@@ -498,7 +498,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
   return (
     <div>
       {/* Router Options Banner - Always show this section */}
-      <div className="mb-6 border border-[#474c54]/30 bg-black rounded-xl overflow-hidden">
+      <div className="mb-8 border border-[#474c54]/30 bg-black rounded-xl overflow-hidden">
         <div className="p-5 border-b border-[#474c54]/30">
           <h3 className="font-medium text-white text-lg">Router Options</h3>
         </div>
@@ -538,7 +538,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
             <div className="mt-4">
               <button
                 onClick={() => setShowCompatibilityChecker(!showCompatibilityChecker)}
-                className="w-full flex items-center justify-between bg-black border border-[#474c54]/30 p-5 rounded-xl text-left hover:bg-black/80 hover:border-[#474c54]/50 transition-colors"
+                className="w-full flex items-center justify-between bg-black border border-[#474c54]/30 p-4 rounded-lg text-left hover:bg-black/80 hover:border-[#474c54]/50 transition-colors"
                 aria-expanded={showCompatibilityChecker}
               >
                 <div className="flex items-center">
@@ -563,7 +563,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="mt-3 bg-black border border-[#474c54]/30 p-5 rounded-xl"
+                  className="mt-3 bg-black border border-[#474c54]/30 p-4 rounded-lg"
                 >
                   <div className="flex items-start">
                     <Info className="h-5 w-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
@@ -650,11 +650,11 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
 
                 {/* Single Static IP Card - Always included */}
                 <div
-                  className={`p-5 border-2 ${
+                  className={`p-4 border-2 ${
                     selectedIPOption === "single"
                       ? "border-green-400 bg-green-400/5"
                       : "border-[#474c54]/50 bg-black/30"
-                  } rounded-xl cursor-pointer transition-all hover:border-green-400/70`}
+                  } rounded-lg cursor-pointer transition-all hover:border-green-400/70`}
                   onClick={selectSingleIP}
                 >
                   <div className="flex">
@@ -679,7 +679,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                       </div>
                       <p className="text-sm text-gray-400 mt-1">{singleStaticIP.description}</p>
 
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-4">
                         <div className="flex items-start">
                           <CheckCircle className="h-4 w-4 text-green-400 mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-xs text-gray-300">One dedicated public IP address</span>
@@ -717,7 +717,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
             </div>
 
             {/* IP Block Addons Grid - Using the original card design */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr mb-6">
               <AnimatePresence mode="popLayout">
                 {ipBlockAddons.map((addon) => {
                   const isAddonSelected = checkIsSelected(addon.id)
@@ -823,7 +823,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                         {addon.benefits && (
                           <div className="mb-4 min-h-[120px]">
                             <h4 className="font-medium text-white mb-3">Key Features</h4>
-                            <div className="grid grid-cols-1 gap-4">
+                            <div className="grid grid-cols-1 gap-3">
                               {addon.benefits.map((benefit, idx) => (
                                 <div key={idx} className="flex items-start">
                                   <CheckCircle
@@ -879,7 +879,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.3 }}
-                    className="col-span-1 md:col-span-2 bg-black border-2 border-amber-500/70 rounded-xl p-5 shadow-lg"
+                    className="col-span-1 md:col-span-2 bg-black border-2 border-amber-500/70 rounded-xl p-6 shadow-lg"
                     ref={justificationFormRef}
                   >
                     <div className="flex items-start mb-4">
@@ -904,7 +904,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                           id="justification"
                           rows={5}
                           placeholder="Describe your business needs, including the number of services you plan to host, expected traffic volume, and why you require multiple IP addresses..."
-                          className="w-full bg-black border border-[#474c54]/50 rounded-xl p-3 text-white placeholder-gray-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none"
+                          className="w-full bg-black border border-[#474c54]/50 rounded-lg p-3 text-white placeholder-gray-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none"
                           value={justificationText}
                           onChange={(e) => setJustificationText(e.target.value)}
                           required
@@ -920,7 +920,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                         </p>
                       </div>
 
-                      <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-5">
+                      <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3">
                         <h4 className="text-sm font-medium text-amber-400 flex items-center">
                           <Info className="h-4 w-4 mr-2" />
                           Examples of valid justifications:
@@ -937,13 +937,13 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                         <button
                           type="button"
                           onClick={() => setShowJustificationForm(false)}
-                          className="px-4 py-2 border border-[#474c54]/50 rounded-xl text-gray-300 hover:bg-[#474c54]/20 transition-colors"
+                          className="px-4 py-2 border border-[#474c54]/50 rounded-lg text-gray-300 hover:bg-[#474c54]/20 transition-colors"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
-                          className="px-6 py-2 bg-amber-500 text-black font-medium rounded-xl hover:bg-amber-400 transition-colors flex items-center"
+                          className="px-6 py-2 bg-amber-500 text-black font-medium rounded-lg hover:bg-amber-400 transition-colors flex items-center"
                         >
                           <Send className="h-4 w-4 mr-2" />
                           Submit Justification
@@ -956,7 +956,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
             </div>
 
             {/* IP Information Banner */}
-            <div className="mb-6 p-4 bg-[#bddfef]/5 border border-[#bddfef]/20 rounded-xl">
+            <div className="mb-6 p-4 bg-[#bddfef]/5 border border-[#bddfef]/20 rounded-lg">
               <div className="flex items-start">
                 <Info className="h-5 w-5 text-[#bddfef] mr-3 mt-0.5 flex-shrink-0" />
                 <div>
@@ -972,7 +972,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
 
         {/* Equipment Addons Grid - Only shown when Equipment category is active */}
         {activeCategory === "equipment" && !byodEnabled && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-fr">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr">
             <AnimatePresence mode="popLayout">
               {routerAddons.map((addon) => {
                 const isAddonSelected = checkIsSelected(addon.id)
@@ -1068,7 +1068,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                       {addon.benefits && (
                         <div className="mb-4 min-h-[120px]">
                           <h4 className="font-medium text-white mb-3">Key Features</h4>
-                          <div className="grid grid-cols-1 gap-4">
+                          <div className="grid grid-cols-1 gap-3">
                             {addon.benefits.map((benefit, idx) => (
                               <div key={idx} className="flex items-start">
                                 <CheckCircle
@@ -1210,7 +1210,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {selectedAddonForModal.benefits &&
                       selectedAddonForModal.benefits.map((benefit: string, idx: number) => (
-                        <div key={idx} className="flex items-start bg-black border border-[#474c54]/30 p-5 rounded-xl">
+                        <div key={idx} className="flex items-start bg-black border border-[#474c54]/30 p-3 rounded-lg">
                           <CheckCircle className="h-5 w-5 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-300">{benefit}</span>
                         </div>
@@ -1224,7 +1224,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                     <h4 className="text-lg font-medium text-white mb-2">Common Use Cases</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {selectedAddonForModal.useCases.map((useCase: string, idx: number) => (
-                        <div key={idx} className="flex items-start bg-black border border-[#474c54]/30 p-5 rounded-xl">
+                        <div key={idx} className="flex items-start bg-black border border-[#474c54]/30 p-3 rounded-lg">
                           <Server className="h-5 w-5 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
                           <span className="text-gray-300">{useCase}</span>
                         </div>
@@ -1237,7 +1237,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                 {selectedAddonForModal.category === "network" && selectedAddonForModal.comparison && (
                   <div className="mb-6">
                     <h4 className="text-lg font-medium text-white mb-2">Advantages & Considerations</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <h5 className="text-white font-medium mb-2 flex items-center">
                           <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
@@ -1273,7 +1273,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                 {/* Technical Specifications - Enhanced for IP options */}
                 <div className="mb-6">
                   <h4 className="text-lg font-medium text-white mb-2">Technical Specifications</h4>
-                  <div className="bg-black border border-[#474c54]/30 rounded-xl p-5">
+                  <div className="bg-black border border-[#474c54]/30 rounded-lg p-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {selectedAddonForModal.category === "equipment" && selectedAddonForModal.techSpecs && (
                         <>
@@ -1325,12 +1325,12 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                 {selectedAddonForModal.category === "network" && (
                   <div className="mb-6">
                     <h4 className="text-lg font-medium text-white mb-2">IP Address Visualization</h4>
-                    <div className="bg-black border border-[#474c54]/30 rounded-xl p-5">
+                    <div className="bg-black border border-[#474c54]/30 rounded-lg p-4">
                       <div className="flex flex-col items-center">
                         {selectedAddonForModal.id === 3 && (
                           <div className="w-full max-w-md">
                             <div className="flex justify-center mb-3">
-                              <div className="w-16 h-16 rounded-xl bg-[#bddfef]/20 border border-[#bddfef] flex items-center justify-center">
+                              <div className="w-16 h-16 rounded-lg bg-[#bddfef]/20 border border-[#bddfef] flex items-center justify-center">
                                 <Globe className="h-8 w-8 text-[#bddfef]" />
                               </div>
                             </div>
@@ -1349,7 +1349,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                               {[...Array(5)].map((_, i) => (
                                 <div
                                   key={i}
-                                  className="w-10 h-10 rounded-xl bg-[#f6c7b4]/20 border border-[#f6c7b4] flex items-center justify-center"
+                                  className="w-10 h-10 rounded-lg bg-[#f6c7b4]/20 border border-[#f6c7b4] flex items-center justify-center"
                                 >
                                   <Server className="h-5 w-5 text-[#f6c7b4]" />
                                 </div>
@@ -1370,7 +1370,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                               {[...Array(13)].map((_, i) => (
                                 <div
                                   key={i}
-                                  className="w-8 h-8 rounded-xl bg-[#c7efbd]/20 border border-[#c7efbd] flex items-center justify-center"
+                                  className="w-8 h-8 rounded-lg bg-[#c7efbd]/20 border border-[#c7efbd] flex items-center justify-center"
                                 >
                                   <Network className="h-4 w-4 text-[#c7efbd]" />
                                 </div>
@@ -1393,7 +1393,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                 <div className="mb-6">
                   <h4 className="text-lg font-medium text-white mb-2">Frequently Asked Questions</h4>
                   <div className="space-y-3">
-                    <div className="bg-black border border-[#474c54]/30 p-5 rounded-xl">
+                    <div className="bg-black border border-[#474c54]/30 p-4 rounded-lg">
                       <h5 className="text-white font-medium mb-1 flex items-center">
                         <HelpCircle className="h-4 w-4 text-[#bddfef] mr-2" />
                         {selectedAddonForModal.category === "equipment"
@@ -1408,7 +1408,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                     </div>
 
                     {selectedAddonForModal.category === "network" && (
-                      <div className="bg-black border border-[#474c54]/30 p-5 rounded-xl">
+                      <div className="bg-black border border-[#474c54]/30 p-4 rounded-lg">
                         <h5 className="text-white font-medium mb-1 flex items-center">
                           <HelpCircle className="h-4 w-4 text-[#bddfef] mr-2" />
                           Why would I need multiple IP addresses?
@@ -1422,7 +1422,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                       </div>
                     )}
 
-                    <div className="bg-black border border-[#474c54]/30 p-5 rounded-xl">
+                    <div className="bg-black border border-[#474c54]/30 p-4 rounded-lg">
                       <h5 className="text-white font-medium mb-1 flex items-center">
                         <HelpCircle className="h-4 w-4 text-[#bddfef] mr-2" />
                         {selectedAddonForModal.category === "equipment"
@@ -1445,7 +1445,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                 {/* Support */}
                 <div className="mb-6">
                   <h4 className="text-lg font-medium text-white mb-2">Need Help?</h4>
-                  <div className="bg-black border border-[#474c54]/30 p-5 rounded-xl flex items-start">
+                  <div className="bg-black border border-[#474c54]/30 p-4 rounded-lg flex items-start">
                     <MessageSquare className="h-5 w-5 text-gray-400 mr-3 mt-0.5" />
                     <div>
                       <p className="text-gray-300 text-sm">
@@ -1460,14 +1460,14 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <div className="flex flex-col sm:flex-row gap-3 mt-8">
                   {selectedAddonForModal.id === 3 ? (
                     <button
                       onClick={() => {
                         selectSingleIP()
                         closeAddonDetails()
                       }}
-                      className="flex-1 py-3 rounded-xl text-sm font-medium transition-all flex items-center justify-center bg-green-500 text-white hover:bg-green-600"
+                      className="flex-1 py-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center bg-green-500 text-white hover:bg-green-600"
                     >
                       <CheckCircle className="h-4 w-4 mr-2" />
                       Use Included IP
@@ -1479,7 +1479,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                           toggleAddon(selectedAddonForModal)
                           closeAddonDetails()
                         }}
-                        className="flex-1 py-3 rounded-xl text-sm font-medium transition-all flex items-center justify-center bg-black text-white hover:bg-gray-900"
+                        className="flex-1 py-3 rounded-lg text-sm font-medium transition-all flex items-center justify-center bg-black text-white hover:bg-gray-900"
                       >
                         <CheckCircle className="h-4 w-4 mr-2" />
                         Remove from Package
@@ -1488,7 +1488,7 @@ export default function Addons({ orderData, updateOrderData }: AddonsProps) {
                   )}
                   <button
                     onClick={closeAddonDetails}
-                    className="py-3 px-6 rounded-xl text-sm font-medium transition-all bg-black text-white border border-[#474c54]/30 hover:bg-gray-900"
+                    className="py-3 px-6 rounded-lg text-sm font-medium transition-all bg-black text-white border border-[#474c54]/30 hover:bg-gray-900"
                   >
                     Close
                   </button>

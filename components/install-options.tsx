@@ -252,7 +252,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
       <motion.div initial="hidden" animate="visible" variants={containerVariants} className="space-y-6">
         {/* Installation Info Section */}
         <motion.div variants={itemVariants} className="bg-black border border-[#a5c7d7]/30 p-5 rounded-xl shadow-md">
-          <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-0">
             <div className="bg-[#a5c7d7]/20 p-2 rounded-full mr-0 sm:mr-3 flex-shrink-0 border border-[#a5c7d7]/30 self-start">
               <Info className="h-5 w-5 text-[#a5c7d7]" />
             </div>
@@ -264,7 +264,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
               </p>
               <button
                 onClick={() => toggleSection("installDetails")}
-                className="flex items-center text-[#a5c7d7] text-sm mt-3 hover:text-white transition-colors py-3 px-4"
+                className="flex items-center text-[#a5c7d7] text-sm mt-3 hover:text-white transition-colors"
               >
                 {expandedSection === "installDetails" ? (
                   <>
@@ -286,7 +286,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
                     transition={{ duration: 0.3 }}
                     className="mt-3 overflow-hidden"
                   >
-                    <div className="space-y-3 text-sm text-gray-300 p-5 bg-[#a5c7d7]/5 rounded-xl border border-[#a5c7d7]/20">
+                    <div className="space-y-3 text-sm text-gray-300 p-3 bg-[#a5c7d7]/5 rounded-lg border border-[#a5c7d7]/20">
                       <div className="flex items-start">
                         <Clock className="h-4 w-4 text-[#a5c7d7] mr-2 mt-0.5" />
                         <p>Installation typically takes 1-2 hours depending on your property.</p>
@@ -328,9 +328,9 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-black border border-gray-700/50 rounded-xl p-5 shadow-md"
+            className="bg-black border border-gray-700/50 rounded-xl p-4 shadow-md"
           >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3">
               {generateCalendarData()
                 .filter((day) => day.isCurrentMonth && day.isSelectable)
                 .slice(0, 10)
@@ -344,7 +344,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2, delay: index * 0.03 }}
                       onClick={() => handleDateSelect(day.date)}
-                      className={`border p-5 cursor-pointer transition-all rounded-xl backdrop-blur-sm flex flex-col items-center justify-center ${
+                      className={`border p-3 cursor-pointer transition-all rounded-xl backdrop-blur-sm flex flex-col items-center justify-center ${
                         isSelected
                           ? "border-[#645bc5] bg-[#645bc5]/20 shadow-lg shadow-[#645bc5]/15"
                           : "border-gray-700/50 bg-black hover:border-[#645bc5]/50 hover:shadow-md hover:shadow-[#645bc5]/10"
@@ -388,7 +388,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
                 Choose a time slot that works best for you. Installation typically takes 1-2 hours.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {timeSlots.map((timeSlot, index) => {
                   const isSelected = selectedTimeSlot === timeSlot
                   return (
@@ -400,7 +400,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => handleTimeSlotSelect(timeSlot)}
-                      className={`border p-5 cursor-pointer transition-all rounded-xl backdrop-blur-sm ${
+                      className={`border p-4 cursor-pointer transition-all rounded-xl backdrop-blur-sm ${
                         isSelected
                           ? "border-[#645bc5] bg-[#645bc5]/20 shadow-lg shadow-[#645bc5]/15"
                           : "border-gray-700/50 bg-black hover:border-gray-600/30 hover:shadow-md hover:shadow-[#645bc5]/10"
@@ -464,7 +464,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
               </p>
 
               <div className="space-y-3">
-                <div className="flex items-start space-x-3 p-5 rounded-xl cursor-pointer transition-all bg-gray-800/40 border border-gray-600/30 hover:border-gray-600/50">
+                <div className="flex items-start space-x-3 p-3 rounded-xl cursor-pointer transition-all bg-gray-800/40 border border-gray-600/30 hover:border-gray-600/50">
                   <div className="flex-grow flex items-start">
                     <Mail
                       className={`h-5 w-5 ${reminderMethod.includes("email") ? "text-[#645bc5]" : "text-gray-500"} mr-3 mt-0.5`}
@@ -482,7 +482,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
                   />
                 </div>
 
-                <div className="flex items-start space-x-3 p-5 rounded-xl cursor-pointer transition-all bg-gray-800/40 border border-gray-600/30 hover:border-gray-600/50">
+                <div className="flex items-start space-x-3 p-3 rounded-xl cursor-pointer transition-all bg-gray-800/40 border border-gray-600/30 hover:border-gray-600/50">
                   <div className="flex-grow flex items-start">
                     <MessageSquare
                       className={`h-5 w-5 ${reminderMethod.includes("sms") ? "text-[#645bc5]" : "text-gray-500"} mr-3 mt-0.5`}
@@ -500,7 +500,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
                   />
                 </div>
 
-                <div className="flex items-start space-x-3 p-5 rounded-xl cursor-pointer transition-all bg-gray-800/40 border border-gray-600/30 hover:border-gray-600/50">
+                <div className="flex items-start space-x-3 p-3 rounded-xl cursor-pointer transition-all bg-gray-800/40 border border-gray-600/30 hover:border-gray-600/50">
                   <div className="flex-grow flex items-start">
                     <Phone
                       className={`h-5 w-5 ${reminderMethod.includes("phone") ? "text-[#645bc5]" : "text-gray-500"} mr-3 mt-0.5`}
@@ -540,7 +540,7 @@ export default function InstallOptions({ orderData, updateOrderData, errors = {}
               className="overflow-hidden"
             >
               <motion.div className="bg-[#645bc5]/20 backdrop-blur-sm border border-[#645bc5]/50 p-5 rounded-xl shadow-md shadow-[#645bc5]/15">
-                <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-0">
                   <div className="bg-[#645bc5]/30 p-2 rounded-full mr-0 sm:mr-3 flex-shrink-0 border border-[#645bc5]/50 self-start">
                     <CheckCircle className="h-5 w-5 text-[#9992eb]" />
                   </div>

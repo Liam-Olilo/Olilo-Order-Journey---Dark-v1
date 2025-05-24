@@ -64,7 +64,7 @@ export default function NextButton({
       disabled={!isFormValid}
       className={`
       bg-primary hover:bg-primary/90 text-black font-medium
-      px-6 py-3 h-auto text-base transition-all duration-300
+      px-6 py-2.5 h-auto text-base transition-all duration-300
       ${!isFormValid ? "opacity-70 cursor-not-allowed" : ""}
       ${className}
     `}

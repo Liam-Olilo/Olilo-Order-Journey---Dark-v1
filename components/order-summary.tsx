@@ -77,11 +77,9 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
   }
 
   const calculateSubtotal = () => {
-    const planPrice = orderData?.plan ? orderData.plan.price : 0
-    const addonTotal = orderData?.addons
-      ? orderData.addons.reduce((sum: number, addon: any) => sum + addon.price, 0)
-      : 0
-    const mobilePlanPrice = orderData?.mobilePlan
+    const planPrice = orderData.plan ? orderData.plan.price : 0
+    const addonTotal = orderData.addons ? orderData.addons.reduce((sum: number, addon: any) => sum + addon.price, 0) : 0
+    const mobilePlanPrice = orderData.mobilePlan
       ? orderData.mobilePlan.bundleDiscount
         ? orderData.mobilePlan.discountedPrice
         : orderData.mobilePlan.price
@@ -90,7 +88,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
   }
 
   const calculateDiscount = () => {
-    if (!orderData?.promoDiscount) return 0
+    if (!orderData.promoDiscount) return 0
 
     const subtotal = calculateSubtotal()
 
@@ -112,17 +110,17 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
     let oneTimeCosts = 0
 
     // Add activation fee if broadband plan is selected
-    if (orderData?.plan) {
+    if (orderData.plan) {
       oneTimeCosts += 19.99 // Activation fee
     }
 
     // Add SIM card fee if mobile plan is selected and it's not an eSIM
-    if (orderData?.mobilePlan && orderData?.simType !== "eSIM") {
+    if (orderData.mobilePlan && orderData.simType !== "eSIM") {
       oneTimeCosts += 4.99 // Physical SIM card fee
     }
 
     // Add router delivery fee if not self-installation
-    if (orderData?.installOption && orderData.installOption.type !== "self") {
+    if (orderData.installOption && orderData.installOption.type !== "self") {
       oneTimeCosts += 5.99 // Delivery and professional installation fee
     }
 
@@ -135,8 +133,8 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
   }
 
   return (
-    <div className="bg-black rounded-xl border border-gray-700/50 overflow-hidden">
-      <div className="bg-gray-900/30 border-b border-gray-800/60 px-5 py-4 flex justify-between items-center">
+    <div className="bg-black rounded-lg border border-gray-700/50 overflow-hidden">
+      <div className="bg-gray-900/30 border-b border-gray-800/60 px-4 py-3 flex justify-between items-center">
         <h3 className="text-white font-medium flex items-center">
           <Package className="h-4 w-4 mr-2 text-[#bddfef]" />
           Plan Details
@@ -161,29 +159,29 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
           >
             <div className="p-5 space-y-4">
               {/* Broadband Plan */}
-              {orderData?.plan ? (
-                <div className="pb-4 border-b border-gray-700/30">
-                  <div className="flex justify-between items-start mb-4">
+              {orderData.plan ? (
+                <div className="pb-3 border-b border-gray-700/30">
+                  <div className="flex justify-between items-start mb-2">
                     <div className="flex items-start">
-                      <Wifi className="h-4 w-4 text-[#bddfef] mr-3 mt-0.5 flex-shrink-0" />
+                      <Wifi className="h-4 w-4 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="text-white text-sm font-medium">{orderData.plan.name}</h4>
-                        <div className="space-y-2 mt-2">
+                        <div className="space-y-1 mt-1">
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             {orderData.plan.speed} download / {Number.parseInt(orderData.plan.speed) / 5} upload
                           </p>
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             Unlimited data
                           </p>
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             Monthly rolling contract
                           </p>
                           {orderData.plan.name.includes("Premium") || orderData.plan.name.includes("Ultra") ? (
                             <p className="text-gray-400 text-xs flex items-center">
-                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                               Priority customer support
                             </p>
                           ) : null}
@@ -192,28 +190,28 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                     </div>
                     <div className="text-right">
                       <span className="text-white text-sm font-medium">£{orderData.plan.price.toFixed(2)}/mo</span>
-                      <p className="text-gray-400 text-xs mt-1">+ £19.99 activation</p>
+                      <p className="text-gray-400 text-xs mt-0.5">+ £19.99 activation</p>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div className="py-3 px-4 bg-black rounded-xl border border-[#474c54]/30">
+                <div className="py-2 px-3 bg-black rounded-md border border-[#474c54]/30">
                   <p className="text-gray-400 text-sm">No broadband plan selected</p>
                 </div>
               )}
 
               {/* Addons */}
-              {orderData?.addons && orderData.addons.length > 0 && (
-                <div className="pb-4 border-b border-gray-700/30">
-                  <h4 className="text-gray-300 text-xs font-medium mb-3 flex items-center">
-                    <Package className="h-3.5 w-3.5 text-[#bddfef] mr-2" />
+              {orderData.addons && orderData.addons.length > 0 && (
+                <div className="pb-3 border-b border-gray-700/30">
+                  <h4 className="text-gray-300 text-xs font-medium mb-2 flex items-center">
+                    <Package className="h-3.5 w-3.5 text-[#bddfef] mr-1.5" />
                     Add-ons
                   </h4>
                   {orderData.addons.map((addon: any, index: number) => (
-                    <div key={index} className="flex justify-between items-start mb-3 ml-6">
+                    <div key={index} className="flex justify-between items-start mb-2 ml-6">
                       <div>
                         <p className="text-gray-300 text-xs font-medium">{addon.name}</p>
-                        {addon.description && <p className="text-gray-400 text-xs mt-1">{addon.description}</p>}
+                        {addon.description && <p className="text-gray-400 text-xs mt-0.5">{addon.description}</p>}
                       </div>
                       <span className="text-gray-300 text-xs">£{addon.price.toFixed(2)}/mo</span>
                     </div>
@@ -222,33 +220,33 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
               )}
 
               {/* Mobile Plan */}
-              {orderData?.mobilePlan && (
-                <div className="pb-4 border-b border-gray-700/30">
-                  <div className="flex justify-between items-start mb-3">
+              {orderData.mobilePlan && (
+                <div className="pb-3 border-b border-gray-700/30">
+                  <div className="flex justify-between items-start mb-2">
                     <div className="flex items-start">
-                      <Smartphone className="h-4 w-4 text-[#bddfef] mr-3 mt-0.5 flex-shrink-0" />
+                      <Smartphone className="h-4 w-4 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="text-white text-sm font-medium">{orderData.mobilePlan.name} Plan</h4>
-                        <div className="space-y-2 mt-2">
+                        <div className="space-y-1 mt-1">
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             {orderData.mobilePlan.data} data
                           </p>
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             {orderData.mobilePlan.minutes} minutes
                           </p>
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             {orderData.mobilePlan.texts} texts
                           </p>
                           <p className="text-gray-400 text-xs flex items-center">
-                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                             {orderData.simType || "Physical SIM"}
                           </p>
                           {orderData.mobilePlan.bundleDiscount && (
-                            <div className="flex items-center mt-2">
-                              <Tag className="h-3 w-3 text-[#bddfef] mr-2" />
+                            <div className="flex items-center mt-1">
+                              <Tag className="h-3 w-3 text-[#bddfef] mr-1.5" />
                               <span className="text-[#bddfef] text-xs">Bundle discount applied</span>
                             </div>
                           )}
@@ -264,37 +262,37 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                         /mo
                       </span>
                       {orderData.mobilePlan.bundleDiscount && (
-                        <p className="text-[#bddfef] text-xs mt-1">
+                        <p className="text-[#bddfef] text-xs mt-0.5">
                           Save £{(orderData.mobilePlan.price - orderData.mobilePlan.discountedPrice).toFixed(2)}/mo
                         </p>
                       )}
-                      {orderData.simType !== "eSIM" && <p className="text-gray-400 text-xs mt-1">+ £4.99 SIM card</p>}
+                      {orderData.simType !== "eSIM" && <p className="text-gray-400 text-xs mt-0.5">+ £4.99 SIM card</p>}
                     </div>
                   </div>
                 </div>
               )}
 
               {/* Installation */}
-              {orderData?.installOption && (
-                <div className="pb-4 border-b border-gray-700/30">
-                  <div className="flex justify-between items-start mb-3">
+              {orderData.installOption && (
+                <div className="pb-3 border-b border-gray-700/30">
+                  <div className="flex justify-between items-start mb-2">
                     <div className="flex items-start">
-                      <Calendar className="h-4 w-4 text-[#bddfef] mr-3 mt-0.5 flex-shrink-0" />
+                      <Calendar className="h-4 w-4 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
                       <div>
                         <h4 className="text-white text-sm font-medium">Installation</h4>
-                        <div className="space-y-2 mt-2">
+                        <div className="space-y-1 mt-1">
                           <p className="text-gray-400 text-xs">
                             {orderData.installOption.date}, {orderData.installOption.timeSlot}
                           </p>
                           <p className="text-gray-400 text-xs flex items-center">
-                            <Clock className="h-3 w-3 text-gray-400 mr-2" />
+                            <Clock className="h-3 w-3 text-gray-400 mr-1.5" />
                             {orderData.installOption.type === "professional"
                               ? "Professional installation (2-3 hours)"
                               : "Self-installation kit"}
                           </p>
                           {orderData.installOption.type === "professional" && (
                             <p className="text-gray-400 text-xs flex items-center">
-                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2" />
+                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5" />
                               Engineer setup & optimization
                             </p>
                           )}
@@ -306,7 +304,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                         {orderData.installOption.type === "professional" ? "£49.99" : "Free"}
                       </span>
                       {orderData.installOption.type === "professional" && (
-                        <p className="text-[#bddfef] text-xs mt-1">Currently waived</p>
+                        <p className="text-[#bddfef] text-xs mt-0.5">Currently waived</p>
                       )}
                     </div>
                   </div>
@@ -314,14 +312,14 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
               )}
 
               {/* Contract Details */}
-              {orderData?.plan && (
-                <div className="pb-4 border-b border-gray-700/30">
+              {orderData.plan && (
+                <div className="pb-3 border-b border-gray-700/30">
                   <button
                     onClick={() => setShowContractDetails(!showContractDetails)}
                     className="flex items-center justify-between w-full text-left"
                   >
                     <div className="flex items-center">
-                      <CreditCard className="h-4 w-4 text-[#bddfef] mr-3 flex-shrink-0" />
+                      <CreditCard className="h-4 w-4 text-[#bddfef] mr-2 flex-shrink-0" />
                       <h4 className="text-white text-sm font-medium">Contract Details</h4>
                     </div>
                     <ChevronDown
@@ -336,7 +334,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="overflow-hidden mt-3 ml-7 space-y-3"
+                        className="overflow-hidden mt-2 ml-6 space-y-2"
                       >
                         <div className="flex justify-between">
                           <span className="text-gray-400 text-xs">Contract length:</span>
@@ -356,8 +354,8 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                             £{calculateTotal().toFixed(2)}/month (no change)
                           </span>
                         </div>
-                        <div className="flex items-start mt-3">
-                          <Info className="h-3 w-3 text-gray-400 mr-2 mt-0.5 flex-shrink-0" />
+                        <div className="flex items-start mt-2">
+                          <Info className="h-3 w-3 text-gray-400 mr-1.5 mt-0.5 flex-shrink-0" />
                           <p className="text-gray-400 text-xs">
                             You can cancel anytime with 30 days notice. No long-term commitment required.
                           </p>
@@ -369,14 +367,14 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
               )}
 
               {/* Price Guarantee */}
-              {orderData?.plan && (
-                <div className="pb-4 border-b border-gray-700/30">
+              {orderData.plan && (
+                <div className="pb-3 border-b border-gray-700/30">
                   <button
                     onClick={() => setShowPriceGuarantee(!showPriceGuarantee)}
                     className="flex items-center justify-between w-full text-left"
                   >
                     <div className="flex items-center">
-                      <ShieldCheck className="h-4 w-4 text-[#bddfef] mr-3 flex-shrink-0" />
+                      <ShieldCheck className="h-4 w-4 text-[#bddfef] mr-2 flex-shrink-0" />
                       <h4 className="text-white text-sm font-medium">Price Guarantee</h4>
                     </div>
                     <ChevronDown
@@ -391,60 +389,60 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="overflow-hidden mt-3 ml-7 space-y-3"
+                        className="overflow-hidden mt-2 ml-6 space-y-2"
                       >
-                        <div className="p-4 bg-[#bddfef]/10 border border-[#bddfef]/20 rounded-xl">
-                          <div className="flex items-start mb-3">
-                            <ShieldCheck className="h-3.5 w-3.5 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                        <div className="p-3 bg-[#bddfef]/10 border border-[#bddfef]/20 rounded-md">
+                          <div className="flex items-start mb-2">
+                            <ShieldCheck className="h-3.5 w-3.5 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                             <p className="text-[#bddfef] text-xs font-medium">12-Month Price Lock Guarantee</p>
                           </div>
-                          <p className="text-gray-300 text-xs ml-6 mb-3">
+                          <p className="text-gray-300 text-xs ml-5 mb-2">
                             We guarantee your monthly price of{" "}
                             <span className="font-medium">£{calculateTotal().toFixed(2)}</span> won't change for 12
                             months.
                           </p>
-                          <div className="space-y-2 ml-6">
+                          <div className="space-y-1.5 ml-5">
                             <p className="text-gray-400 text-xs flex items-start">
-                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                               <span>No mid-contract price increases</span>
                             </p>
                             <p className="text-gray-400 text-xs flex items-start">
-                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                               <span>No hidden fees or charges</span>
                             </p>
                             <p className="text-gray-400 text-xs flex items-start">
-                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                              <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                               <span>Cancel anytime with 30 days notice</span>
                             </p>
                           </div>
 
                           {/* Inflation Protection Section */}
-                          <div className="mt-4 pt-3 border-t border-[#bddfef]/20 ml-6">
-                            <div className="flex items-start mb-2">
-                              <TrendingUp className="h-3.5 w-3.5 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                          <div className="mt-3 pt-3 border-t border-[#bddfef]/20 ml-5">
+                            <div className="flex items-start mb-1.5">
+                              <TrendingUp className="h-3.5 w-3.5 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                               <p className="text-[#bddfef] text-xs font-medium">Inflation Protection</p>
                             </div>
-                            <p className="text-gray-300 text-xs ml-6 mb-3">
+                            <p className="text-gray-300 text-xs ml-5 mb-2">
                               While inflation affects prices across the economy, your broadband price stays fixed.
                             </p>
-                            <div className="space-y-2 ml-6">
+                            <div className="space-y-1.5 ml-5">
                               <p className="text-gray-400 text-xs flex items-start">
-                                <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                                <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                                 <span>Protected from industry price rises (avg. 5-10% annually)</span>
                               </p>
                               <p className="text-gray-400 text-xs flex items-start">
-                                <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                                <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                                 <span>No inflation-linked or CPI/RPI + percentage increases</span>
                               </p>
                               <p className="text-gray-400 text-xs flex items-start">
-                                <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                                <CheckCircle2 className="h-3 w-3 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                                 <span>Potential savings of £30-£60 over 12 months</span>
                               </p>
                             </div>
                           </div>
 
-                          <div className="flex items-start mt-3 ml-6">
-                            <Info className="h-3 w-3 text-gray-400 mr-2 mt-0.5 flex-shrink-0" />
+                          <div className="flex items-start mt-2 ml-5">
+                            <Info className="h-3 w-3 text-gray-400 mr-1.5 mt-0.5 flex-shrink-0" />
                             <p className="text-gray-400 text-xs">
                               After 12 months, we'll notify you before any price changes. You'll always have the option
                               to cancel or switch plans.
@@ -458,11 +456,11 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
               )}
 
               {/* Promo Code */}
-              <div className="pt-3">
-                {orderData?.promoCode ? (
-                  <div className="flex justify-between items-center mb-4 p-3 bg-black rounded-xl border border-[#474c54]/30">
+              <div className="pt-2">
+                {orderData.promoCode ? (
+                  <div className="flex justify-between items-center mb-3 p-2 bg-black rounded-md border border-[#474c54]/30">
                     <div className="flex items-center">
-                      <Tag className="h-4 w-4 text-[#bddfef] mr-3" />
+                      <Tag className="h-4 w-4 text-[#bddfef] mr-2" />
                       <div>
                         <p className="text-gray-300 text-xs font-medium">{orderData.promoCode}</p>
                         <p className="text-[#bddfef] text-xs">
@@ -481,52 +479,52 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                     </button>
                   </div>
                 ) : (
-                  <div className="mb-4">
-                    <div className="flex space-x-3">
+                  <div className="mb-3">
+                    <div className="flex space-x-2">
                       <input
                         type="text"
                         value={promoCode}
                         onChange={(e) => setPromoCode(e.target.value)}
                         placeholder="Promo code"
-                        className="flex-1 px-4 py-3 text-sm bg-black border border-[#474c54]/50 rounded-xl text-white focus:outline-none focus:border-[#bddfef]/50"
+                        className="flex-1 px-3 py-1.5 text-sm bg-black border border-[#474c54]/50 rounded-md text-white focus:outline-none focus:border-[#bddfef]/50"
                       />
                       <Button
                         onClick={applyPromoCode}
-                        className="px-4 py-3 bg-[#bddfef] hover:bg-[#a5c7d7] text-black text-sm rounded-xl transition-all"
+                        className="px-3 py-1.5 bg-[#bddfef] hover:bg-[#a5c7d7] text-black text-sm rounded-md transition-all"
                       >
                         Apply
                       </Button>
                     </div>
-                    {promoError && <p className="text-red-400 text-xs mt-2">{promoError}</p>}
-                    {promoSuccess && <p className="text-gray-400 text-xs mt-2">{promoSuccess}</p>}
+                    {promoError && <p className="text-red-400 text-xs mt-1">{promoError}</p>}
+                    {promoSuccess && <p className="text-gray-400 text-xs mt-1">{promoSuccess}</p>}
                   </div>
                 )}
               </div>
 
               {/* One-time Costs */}
               {calculateOneTimeCosts() > 0 && (
-                <div className="pt-4 pb-4 border-t border-b border-gray-700/30">
-                  <h4 className="text-gray-300 text-xs font-medium mb-3 flex items-center">
-                    <CreditCard className="h-3.5 w-3.5 text-[#bddfef] mr-2" />
+                <div className="pt-3 pb-3 border-t border-b border-gray-700/30">
+                  <h4 className="text-gray-300 text-xs font-medium mb-2 flex items-center">
+                    <CreditCard className="h-3.5 w-3.5 text-[#bddfef] mr-1.5" />
                     One-time Costs
                   </h4>
 
-                  {orderData?.plan && (
-                    <div className="flex justify-between items-center mb-2 ml-7">
+                  {orderData.plan && (
+                    <div className="flex justify-between items-center mb-1.5 ml-6">
                       <span className="text-gray-400 text-xs">Activation fee</span>
                       <span className="text-gray-300 text-xs">£19.99</span>
                     </div>
                   )}
 
-                  {orderData?.mobilePlan && orderData?.simType !== "eSIM" && (
-                    <div className="flex justify-between items-center mb-2 ml-7">
+                  {orderData.mobilePlan && orderData.simType !== "eSIM" && (
+                    <div className="flex justify-between items-center mb-1.5 ml-6">
                       <span className="text-gray-400 text-xs">SIM card</span>
                       <span className="text-gray-300 text-xs">£4.99</span>
                     </div>
                   )}
 
-                  {orderData?.installOption && orderData.installOption.type !== "self" && (
-                    <div className="flex justify-between items-center mb-2 ml-7">
+                  {orderData.installOption && orderData.installOption.type !== "self" && (
+                    <div className="flex justify-between items-center mb-1.5 ml-6">
                       <span className="text-gray-400 text-xs">Delivery & installation</span>
                       <div className="text-right">
                         <span className="text-gray-300 text-xs">£49.99</span>
@@ -535,7 +533,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
                     </div>
                   )}
 
-                  <div className="flex justify-between items-center pt-2 mt-2 border-t border-gray-700/30 ml-7">
+                  <div className="flex justify-between items-center pt-1.5 mt-1.5 border-t border-gray-700/30 ml-6">
                     <span className="text-gray-300 text-xs font-medium">Total one-time costs</span>
                     <span className="text-gray-300 text-xs font-medium">£{calculateOneTimeCosts().toFixed(2)}</span>
                   </div>
@@ -543,33 +541,33 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
               )}
 
               {/* Monthly Totals */}
-              <div className="pt-4 border-t border-gray-700/30">
-                <h4 className="text-gray-300 text-xs font-medium mb-3 flex items-center">
-                  <Shield className="h-3.5 w-3.5 text-[#bddfef] mr-2" />
+              <div className="pt-3 border-t border-gray-700/30">
+                <h4 className="text-gray-300 text-xs font-medium mb-2 flex items-center">
+                  <Shield className="h-3.5 w-3.5 text-[#bddfef] mr-1.5" />
                   Monthly Costs
                 </h4>
 
-                <div className="flex justify-between items-center mb-2 ml-7">
+                <div className="flex justify-between items-center mb-1.5 ml-6">
                   <span className="text-gray-400 text-xs">Subtotal</span>
                   <span className="text-gray-300 text-xs">£{calculateSubtotal().toFixed(2)}/mo</span>
                 </div>
 
-                {orderData?.promoDiscount > 0 && (
-                  <div className="flex justify-between items-center mb-2 ml-7">
+                {orderData.promoDiscount > 0 && (
+                  <div className="flex justify-between items-center mb-1.5 ml-6">
                     <span className="text-gray-400 text-xs">Discount</span>
                     <span className="text-[#bddfef] text-xs">-£{calculateDiscount().toFixed(2)}/mo</span>
                   </div>
                 )}
 
-                <div className="flex justify-between items-center pt-2 mt-2 border-t border-gray-700/30">
+                <div className="flex justify-between items-center pt-1.5 mt-1.5 border-t border-gray-700/30">
                   <span className="text-white font-medium">Total monthly</span>
                   <span className="text-white font-bold">£{calculateTotal().toFixed(2)}/mo</span>
                 </div>
 
-                {orderData?.plan && (
-                  <div className="mt-3 pt-3 border-t border-gray-700/30">
+                {orderData.plan && (
+                  <div className="mt-2 pt-2 border-t border-gray-700/30">
                     <div className="flex items-start">
-                      <AlertCircle className="h-3.5 w-3.5 text-[#bddfef] mr-2 mt-0.5 flex-shrink-0" />
+                      <AlertCircle className="h-3.5 w-3.5 text-[#bddfef] mr-1.5 mt-0.5 flex-shrink-0" />
                       <p className="text-gray-400 text-xs">
                         First payment includes one-time costs (£{calculateOneTimeCosts().toFixed(2)}) plus your first
                         month (£{calculateTotal().toFixed(2)}) for a total of{" "}

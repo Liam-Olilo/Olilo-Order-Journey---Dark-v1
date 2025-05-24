@@ -33,26 +33,6 @@
     --ring: 195 56% 84%;
 
     --radius: 0.5rem;
-
-    /* Spacing system */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-    --spacing-2xl: 3rem;
-
-    /* Border radius */
-    --radius-sm: 0.25rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
-    --radius-2xl: 1.5rem;
-
-    /* Padding defaults */
-    --padding-card: 1.25rem;
-    --padding-button: 0.75rem 1.5rem;
-    --padding-input: 0.75rem 1rem;
   }
 
   .dark {
@@ -226,26 +206,6 @@
   /* Input styles */
   .input-dark {
     @apply bg-black border border-gray-500 text-white focus:border-[#bddfef] focus:ring-1 focus:ring-[#bddfef]/20 rounded-md transition-all;
-  }
-
-  /* Consistent card styling */
-  .card-standard {
-    @apply bg-black border border-gray-700/50 rounded-xl p-5 shadow-md;
-  }
-
-  /* Consistent form field styling */
-  .input-standard {
-    @apply w-full px-4 py-3 border border-gray-600/50 bg-gray-800/40 text-white focus:outline-none focus:border-[#a5c7d7];
-  }
-
-  /* Consistent section spacing */
-  .section-spacing {
-    @apply mb-6;
-  }
-
-  /* Consistent component spacing */
-  .component-spacing {
-    @apply gap-4;
   }
 }
 

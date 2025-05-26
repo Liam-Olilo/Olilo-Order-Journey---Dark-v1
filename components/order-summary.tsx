@@ -137,7 +137,7 @@ export default function OrderSummary({ orderData, updateOrderData }: OrderSummar
       <div className="bg-gray-900/30 border-b border-gray-800/60 px-4 py-3 flex justify-between items-center">
         <h3 className="text-white font-medium flex items-center">
           <Package className="h-4 w-4 mr-2 text-[#bddfef]" />
-          Order Summary
+          Plan Details
         </h3>
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}

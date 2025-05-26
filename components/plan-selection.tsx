@@ -1930,21 +1930,6 @@ export default function PlanSelection({ orderData, updateOrderData, errors = {} 
               >
                 <div className="flex justify-between items-center">
                   <div className="flex items-center">
-                    <div
-                      className={`p-2 mr-3 rounded-full ${
-                        isSelected
-                          ? "bg-white/30"
-                          : plan.id === 1
-                            ? "bg-pink-400/30"
-                            : plan.id === 2
-                              ? "bg-[#bddfef]/30"
-                              : plan.id === 3
-                                ? "bg-blue-400/30"
-                                : "bg-yellow-400/30"
-                      }`}
-                    >
-                      <plan.icon className="h-5 w-5" style={{ color: isSelected ? "black" : planColor }} />
-                    </div>
                     <div>
                       <h3 className={`font-bold text-xl ${isSelected ? "text-black" : "text-white"}`}>{plan.name}</h3>
                       <p className={`text-sm ${isSelected ? "text-black/80" : "text-gray-400"}`}>{plan.tagline}</p>
@@ -2485,7 +2470,7 @@ export default function PlanSelection({ orderData, updateOrderData, errors = {} 
                 {activeTab === "features" && (
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-mediummm text-white mb-4 flex items-center">
+                      <h3 className="text-lg font-mediummmm text-white mb-4 flex items-center">
                         <Check className="h-5 w-5 mr-2" style={{ color: getPlanColor(selectedDetailPlan.id) }} />
                         All Features
                       </h3>
